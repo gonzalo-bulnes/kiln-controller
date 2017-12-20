@@ -9,6 +9,16 @@ Goals
 - break down a kiln controller system into functional modules
 - emulate an kiln controller user interface
 
+Usage
+-----
+
+### Locally
+
+```bash
+# Start the user interface prototype
+yarn start
+```
+
 License
 -------
 
