@@ -3,6 +3,11 @@ Kiln controller prototype
 
 An architecture and usability prototype for a kiln controller.
 
+Goals
+-----
+
+- break down a kiln controller system into functional modules
+- emulate an kiln controller user interface
 
 License
 -------
