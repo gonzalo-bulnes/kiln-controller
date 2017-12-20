@@ -1,16 +1,15 @@
-Kiln controller prototype
-=========================
+# Kiln controller prototype
+
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 
 An architecture and usability prototype for a kiln controller.
 
-Goals
------
+## Goals
 
-- break down a kiln controller system into functional modules
-- emulate an kiln controller user interface
+* break down a kiln controller system into functional modules
+* emulate an kiln controller user interface
 
-Usage
------
+## Usage
 
 ### Locally
 
@@ -19,8 +18,7 @@ Usage
 yarn start
 ```
 
-License
--------
+## License
 
     Kiln Controller
     Copyright (C) 2017 Gonzalo Bulnes Guilpain
