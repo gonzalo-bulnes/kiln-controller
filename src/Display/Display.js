@@ -1,6 +1,10 @@
-import React from "react";
+import React, { Component } from "react";
 import "./Display.css";
 
-const Display = ({ text }) => <p className="Display">{text}</p>;
+class Display extends Component {
+  render() {
+    return <p className="Display">{this.props.children}</p>;
+  }
+}
 
 export default Display;
