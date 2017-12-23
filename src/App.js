@@ -1,11 +1,11 @@
 import React from "react";
-import Button from "./Button/Button";
-import Display from "./Display/Display";
+import Button from "./components/Button/Button";
+import Display from "./components/Display/Display";
 import TemperatureDisplay, {
   DEG_CELSIUS,
   DEG_FARENHEIT
-} from "./TemperatureDisplay/TemperatureDisplay";
-import TimeDisplay from "./TimeDisplay/TimeDisplay";
+} from "./components/TemperatureDisplay/TemperatureDisplay";
+import TimeDisplay from "./components/TimeDisplay/TimeDisplay";
 
 const App = () => (
   <div className="App">
