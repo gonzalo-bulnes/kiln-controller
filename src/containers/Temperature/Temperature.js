@@ -3,7 +3,7 @@ import { setTemperatureUnit } from "../../actions";
 import { temperatureUnits } from "../../constants";
 import TemperatureDisplay from "../../components/TemperatureDisplay/TemperatureDisplay";
 
-const celsiusToFarenheit = celsius => Math.floor((celsius - 32) * 1.8);
+const celsiusToFarenheit = celsius => Math.floor(celsius * 9 / 5 + 32);
 
 const mapStateToProps = state => ({
   temperature:

@@ -24,12 +24,25 @@ export const TemperatureUnit = ({ unit }) => {
   }
 };
 
+const toggleText = unit => {
+  switch (unit) {
+    case temperatureUnits.DEG_CELSIUS:
+      return "Display temperature in degrees Farenheit (°F)";
+    case temperatureUnits.DEG_FARENHEIT:
+      return "Display temperature in degrees Celsius (°C)";
+    default:
+      return "Toggle temperature unit";
+  }
+};
+
 const TemperatureDisplay = ({ temperature, unit, toggleUnit }) => (
-  <Display>
-    {temperature}
-    <TemperatureUnit unit={unit} />
-    <Button text="Toggle unit" onClick={() => toggleUnit(unit)} />
-  </Display>
+  <div>
+    <Display>
+      {temperature}
+      <TemperatureUnit unit={unit} />
+    </Display>
+    <Button text={toggleText(unit)} onClick={() => toggleUnit(unit)} />
+  </div>
 );
 
 TemperatureDisplay.propTypes = {
