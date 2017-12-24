@@ -1,20 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
+import Button from "../Button/Button";
 import Display from "../Display/Display";
+import { temperatureUnits } from "../../constants";
 import "./TemperatureDisplay.css";
-
-export const DEG_CELSIUS = "DEG_CELSIUS";
-export const DEG_FARENHEIT = "DEG_FARENHEIT";
 
 export const TemperatureUnit = ({ unit }) => {
   switch (unit) {
-    case DEG_CELSIUS:
+    case temperatureUnits.DEG_CELSIUS:
       return (
         <abbr className="unit" title="degrees Celsius">
           °C
         </abbr>
       );
-    case DEG_FARENHEIT:
+    case temperatureUnits.DEG_FARENHEIT:
       return (
         <abbr className="unit" title="degrees Farenheit">
           °F
@@ -25,10 +24,11 @@ export const TemperatureUnit = ({ unit }) => {
   }
 };
 
-const TemperatureDisplay = ({ temperature, unit }) => (
+const TemperatureDisplay = ({ temperature, unit, toggleUnit }) => (
   <Display>
     {temperature}
     <TemperatureUnit unit={unit} />
+    <Button text="Toggle unit" onClick={() => toggleUnit(unit)} />
   </Display>
 );
 
