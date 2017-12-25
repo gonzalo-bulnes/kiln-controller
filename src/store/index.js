@@ -21,14 +21,11 @@ const saver = store => next => action => {
   return result;
 };
 
-const storeFactory = (
-  persistentStorage = localStorage,
-  initialState = defaultState
-) =>
+const storeFactory = (initialState = defaultState) =>
   applyMiddleware(logger, saver)(createStore)(
     combineReducers({ temperature }),
-    persistentStorage["redux-store"]
-      ? JSON.parse(persistentStorage["redux-store"])
+    localStorage["redux-store"]
+      ? JSON.parse(localStorage["redux-store"])
       : initialState,
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   );
