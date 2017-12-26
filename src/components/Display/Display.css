@@ -1,0 +1,14 @@
+@import url("https://fonts.googleapis.com/css?family=Roboto+Mono:300");
+
+.Display {
+  background-color: black;
+  color: tomato;
+  font-family: "Roboto Mono", monospace;
+  font-weight: 300;
+  font-size: 8rem;
+  margin: 1rem 0;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  vertical-align: middle;
+}
