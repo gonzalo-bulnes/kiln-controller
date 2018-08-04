@@ -28,5 +28,33 @@ void setup() {
 }
 
 void loop() {
+  int delayBetweenMessages = 500;
   display.writeIdle();
+  delay(delayBetweenMessages);
+  display.writeBadProgram();
+  delay(delayBetweenMessages);
+  display.writeProgram1();
+  delay(delayBetweenMessages);
+  display.writeProgram2();
+  delay(delayBetweenMessages);
+  display.writeProgram3();
+  delay(delayBetweenMessages);
+  display.writeProgram4();
+  delay(delayBetweenMessages);
+  display.writeRamp1();
+  delay(delayBetweenMessages);
+  display.writeRamp2();
+  delay(delayBetweenMessages);
+  display.writeRamp3();
+  delay(delayBetweenMessages);
+  display.writeRamp4();
+  delay(delayBetweenMessages);
+  display.writeRamp5();
+  delay(delayBetweenMessages);
+  display.writeRamp6();
+  delay(delayBetweenMessages);
+  display.writeRamp7();
+  delay(delayBetweenMessages);
+  display.writeRamp8();
+  delay(delayBetweenMessages);
 }
