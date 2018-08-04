@@ -150,20 +150,32 @@ void State::update()
       if (_buttonPressed == BUTTON_START) {
         _current = STATE_PRO1_SEG1_RATE;
       }
+      if (_buttonPressed == BUTTON_DOWN) {
+        _current = STATE_NOT_SUPPORTED;
+      }
       break;
     case STATE_PRO2_SEG1_RAMP:
       if (_buttonPressed == BUTTON_START) {
         _current = STATE_PRO2_SEG1_RATE;
+      }
+      if (_buttonPressed == BUTTON_DOWN) {
+        _current = STATE_NOT_SUPPORTED;
       }
       break;
     case STATE_PRO3_SEG1_RAMP:
       if (_buttonPressed == BUTTON_START) {
         _current = STATE_PRO3_SEG1_RATE;
       }
+      if (_buttonPressed == BUTTON_DOWN) {
+        _current = STATE_NOT_SUPPORTED;
+      }
       break;
     case STATE_PRO4_SEG1_RAMP:
       if (_buttonPressed == BUTTON_START) {
         _current = STATE_PRO4_SEG1_RATE;
+      }
+      if (_buttonPressed == BUTTON_DOWN) {
+        _current = STATE_NOT_SUPPORTED;
       }
       break;
   }
