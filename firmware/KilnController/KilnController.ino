@@ -33,6 +33,10 @@ void loop() {
   delay(delayBetweenMessages);
   display.writeBadProgram();
   delay(delayBetweenMessages);
+  for (byte i = 1; i <= 8; i++) {
+    display.writeHold(i);
+    delay(delayBetweenMessages);
+  }
   for (byte i = 1; i <= 4; i++) {
     display.writeProgram(i);
     delay(delayBetweenMessages);
@@ -41,12 +45,10 @@ void loop() {
     display.writeRamp(i);
     delay(delayBetweenMessages);
   }
+  display.writeStart();
+  delay(delayBetweenMessages);
   for (byte i = 1; i <= 8; i++) {
     display.writeTargetTemperature(i);
-    delay(delayBetweenMessages);
-  }
-  for (byte i = 1; i <= 8; i++) {
-    display.writeHold(i);
     delay(delayBetweenMessages);
   }
 }

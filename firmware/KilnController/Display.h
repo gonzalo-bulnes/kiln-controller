@@ -36,6 +36,7 @@ class Display
     void writeHold(byte segment);
     void writeProgram(byte number);
     void writeRamp(byte segment);
+    void writeStart();
     void writeTargetTemperature(byte segment);
   private:
     byte _addr;
