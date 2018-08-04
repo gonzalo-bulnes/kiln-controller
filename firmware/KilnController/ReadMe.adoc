@@ -1,0 +1,71 @@
+:Author: yctqmbo
+:Email: arduino_yctqmbo@fastmail.com
+:Date: 12/12/2017
+:Revision: 0.1.0
+:License: GNU General Public License v3.0 only
+
+= Project: Kiln Controller
+
+Allows people to program the firing of a glass kiln.
+
+CAUTION: *Kilns are dangerous*, any may involve *high voltage, currents and temperature*. Be careful, use what you find here at your own risk and please refer to the <<license,license>> for details.
+
+== Step 1: Installation
+
+1. Open KilnController.ino in your preferred Arduino IDE
+2. Verify it
+
+== Step 2: Load the code
+
+Upload the code contained in this sketch on to your board
+
+=== Folder structure
+
+....
+ KilnController
+  ├── KilnController.ino  => main Arduino file
+  ├── Display.cpp => Display library
+  ├── Display.h => headers of Display library
+  ├── LICENSE.txt
+  ├── ReadMe.adoc
+  ├── layout.png => missing!
+  └── schematics.png => missing!
+....
+
+
+[[license]]
+=== License
+
+This file is part of Kiln Controller
+
+Kiln Controller is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+Kiln Controller is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
+
+=== Contributing
+To contribute to this project please contact yctqmbo <arduino_yctqmbo@fastmail.com>
+
+=== BOM
+Add the bill of the materials you need for this project.
+
+|===
+| ID | Part name               | Part number | Quantity
+| A1 | Arduino UNO             | UNO         | 1
+| B1 | 14-segment LED Backpack | HT16K33     | 1
+|===
+
+
+=== Help
+This document is written in the _AsciiDoc_ format, a markup language to describe documents.
+If you need help you can search the http://www.methods.co.nz/asciidoc[AsciiDoc homepage]
+or consult the http://powerman.name/doc/asciidoc[AsciiDoc cheatsheet]
