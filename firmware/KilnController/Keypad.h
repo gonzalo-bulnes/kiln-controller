@@ -1,7 +1,6 @@
 /*
-  KilnController
-
-  Allows people to program the firing of a glass kiln.
+  Keypad.h - Library for capturing user input for a kiln controller.
+  Created by yctqmbo, 2018-07-29.
 
   This file is part of Kiln Controller
 
@@ -18,25 +17,21 @@
   You should have received a copy of the GNU General Public License
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
+#ifndef Keypad_h
+#define Keypad_h
 
-#include "Display.h"
-#include "Keypad.h"
+#include "Arduino.h"
 
-Display display(0x70);
-Keypad keypad(2);
+class Keypad
+{
+  public:
+    Keypad(int startPin);
+    void begin();
+    void read();
+    bool startPressed();
+  private:
+    int _startPin;
+    int _startPinState;
+};
 
-void setup() {
-  display.begin();
-  keypad.begin();
-}
-
-void loop() {
-  // read the state of the keypad
-  keypad.read();
-
-  if (keypad.startPressed() == true) {
-    display.writeStart();
-  } else {
-    display.writeIdle();
-  }
-}
+#endif
