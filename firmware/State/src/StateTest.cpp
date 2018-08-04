@@ -34,13 +34,65 @@ const char * test_initial_state() {
     return 0;
 }
 
-const char * test_STATE_IDLE_transitions() {
-    State state;
-    state.begin();
-    state.startButton();
-    state.update();
-    mu_assert("ERROR: expected STATE_IDLE to transition to STATE_PRO1 after Start button was pressed", state.read() == STATE_PRO1);
+const char * test_start_button_in_STATE_IDLE() {
+  State state;
+  state.begin();
+  state.startButton();
+  state.update();
+  mu_assert("ERROR: expected STATE_IDLE to transition to STATE_PRO1 after Start button was pressed", state.read() == STATE_PRO1);
+  return 0;
+}
 
+const char * test_start_button_in_STATE_PRO1() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO1);
+  state.startButton();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO1 to transition to STATE_PRO1_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO1_SEG1_RAMP);
+  return 0;
+}
+
+const char * test_start_button_in_STATE_PRO2() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO2);
+  state.startButton();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO2 to transition to STATE_PRO2_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO2_SEG1_RAMP);
+  return 0;
+}
+
+const char * test_start_button_in_STATE_PRO3() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO3);
+  state.startButton();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO3 to transition to STATE_PRO3_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO3_SEG1_RAMP);
+  return 0;
+}
+
+const char * test_start_button_in_STATE_PRO4() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO4);
+  state.startButton();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO4 to transition to STATE_PRO4_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO4_SEG1_RAMP);
+  return 0;
+}
+
+const char * test_start_button() {
+  mu_run_test(test_start_button_in_STATE_IDLE);
+  mu_run_test(test_start_button_in_STATE_PRO1);
+  mu_run_test(test_start_button_in_STATE_PRO2);
+  mu_run_test(test_start_button_in_STATE_PRO3);
+  mu_run_test(test_start_button_in_STATE_PRO4);
+  return 0;
+}
+
+const char * test_STATE_IDLE_transitions() {
     State state2;
     state2.begin();
     state2.upButton();
@@ -56,13 +108,6 @@ const char * test_STATE_IDLE_transitions() {
 }
 
 const char * test_STATE_PRO1_transitions() {
-    State state;
-    state.begin();
-    state.unsafelySet(STATE_PRO1);
-    state.startButton();
-    state.update();
-    mu_assert("ERROR: expected STATE_PRO1 to transition to STATE_PRO1_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO1_SEG1_RAMP);
-
     State state2;
     state2.begin();
     state2.unsafelySet(STATE_PRO1);
@@ -87,13 +132,6 @@ const char * test_STATE_PRO1_transitions() {
 }
 
 const char * test_STATE_PRO2_transitions() {
-    State state;
-    state.begin();
-    state.unsafelySet(STATE_PRO2);
-    state.startButton();
-    state.update();
-    mu_assert("ERROR: expected STATE_PRO2 to transition to STATE_PRO2_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO2_SEG1_RAMP);
-
     State state2;
     state2.begin();
     state2.unsafelySet(STATE_PRO2);
@@ -118,13 +156,6 @@ const char * test_STATE_PRO2_transitions() {
 }
 
 const char * test_STATE_PRO3_transitions() {
-    State state;
-    state.begin();
-    state.unsafelySet(STATE_PRO3);
-    state.startButton();
-    state.update();
-    mu_assert("ERROR: expected STATE_PRO3 to transition to STATE_PRO3_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO3_SEG1_RAMP);
-
     State state2;
     state2.begin();
     state2.unsafelySet(STATE_PRO3);
@@ -149,13 +180,6 @@ const char * test_STATE_PRO3_transitions() {
 }
 
 const char * test_STATE_PRO4_transitions() {
-    State state;
-    state.begin();
-    state.unsafelySet(STATE_PRO4);
-    state.startButton();
-    state.update();
-    mu_assert("ERROR: expected STATE_PRO4 to transition to STATE_PRO4_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO4_SEG1_RAMP);
-
     State state2;
     state2.begin();
     state2.unsafelySet(STATE_PRO4);
@@ -191,6 +215,7 @@ const char * test_unsafely_set_state() {
 }
 
 const char * all_tests() {
+    mu_run_test(test_start_button);
     mu_run_test(test_initial_state);
     mu_run_test(test_STATE_IDLE_transitions);
     mu_run_test(test_STATE_PRO1_transitions);
