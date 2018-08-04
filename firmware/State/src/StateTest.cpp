@@ -150,6 +150,64 @@ const char * test_start_button() {
   return 0;
 }
 
+const char * test_timeout_in_STATE_IDLE() {
+  State state;
+  state.begin();
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_IDLE not to transition after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO1() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO1);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO1 to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO2() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO2);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO2 to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO3() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO3);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO3 to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO4() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO4);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO3 to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout() {
+  mu_run_test(test_timeout_in_STATE_IDLE);
+  mu_run_test(test_timeout_in_STATE_PRO1);
+  mu_run_test(test_timeout_in_STATE_PRO2);
+  mu_run_test(test_timeout_in_STATE_PRO3);
+  mu_run_test(test_timeout_in_STATE_PRO4);
+  return 0;
+}
+
 const char * test_up_button_in_STATE_IDLE() {
   State state;
   state.begin();
@@ -208,46 +266,6 @@ const char * test_up_button() {
   return 0;
 }
 
-const char * test_STATE_PRO1_transitions() {
-    State state4;
-    state4.begin();
-    state4.unsafelySet(STATE_PRO1);
-    state4.timeout();
-    state4.update();
-    mu_assert("ERROR: expected STATE_PRO1 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
-    return 0;
-}
-
-const char * test_STATE_PRO2_transitions() {
-    State state4;
-    state4.begin();
-    state4.unsafelySet(STATE_PRO2);
-    state4.timeout();
-    state4.update();
-    mu_assert("ERROR: expected STATE_PRO2 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
-    return 0;
-}
-
-const char * test_STATE_PRO3_transitions() {
-    State state4;
-    state4.begin();
-    state4.unsafelySet(STATE_PRO3);
-    state4.timeout();
-    state4.update();
-    mu_assert("ERROR: expected STATE_PRO3 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
-    return 0;
-}
-
-const char * test_STATE_PRO4_transitions() {
-    State state4;
-    state4.begin();
-    state4.unsafelySet(STATE_PRO4);
-    state4.timeout();
-    state4.update();
-    mu_assert("ERROR: expected STATE_PRO3 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
-    return 0;
-}
-
 const char * test_unsafely_set_state() {
     State state;
     state.begin();
@@ -263,11 +281,8 @@ const char * all_tests() {
     mu_run_test(test_down_button);
     mu_run_test(test_initial_state);
     mu_run_test(test_start_button);
+    mu_run_test(test_timeout);
     mu_run_test(test_up_button);
-    mu_run_test(test_STATE_PRO1_transitions);
-    mu_run_test(test_STATE_PRO2_transitions);
-    mu_run_test(test_STATE_PRO3_transitions);
-    mu_run_test(test_STATE_PRO4_transitions);
     mu_run_test(test_unsafely_set_state);
     return 0;
 }
