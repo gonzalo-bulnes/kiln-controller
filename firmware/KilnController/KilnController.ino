@@ -33,6 +33,8 @@ void loop() {
   delay(delayBetweenMessages);
   display.writeBadProgram();
   delay(delayBetweenMessages);
+  display.writeComplete();
+  delay(delayBetweenMessages);
   for (byte i = 1; i <= 8; i++) {
     display.writeHold(i);
     delay(delayBetweenMessages);

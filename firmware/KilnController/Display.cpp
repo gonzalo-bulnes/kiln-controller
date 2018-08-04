@@ -42,6 +42,16 @@ void Display::writeBadProgram()
   _display.writeDisplay();
 }
 
+// writeComplete writes Cplt on a 4 character alphanumeric display.
+void Display::writeComplete()
+{
+  _display.writeDigitAscii(0, 'C');
+  _display.writeDigitAscii(1, 'p');
+  _display.writeDigitAscii(2, 'l');
+  _display.writeDigitAscii(3, 't');
+  _display.writeDisplay();
+}
+
 // writeHold writes Hld1-9 to a 4 character alphanumeric display.
 void Display::writeHold(byte segment)
 {

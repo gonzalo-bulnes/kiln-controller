@@ -32,6 +32,7 @@ class Display
     Display(byte addr);
     void begin();
     void writeBadProgram();
+    void writeComplete();
     void writeIdle();
     void writeHold(byte segment);
     void writeOn();
