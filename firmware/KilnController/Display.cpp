@@ -29,7 +29,7 @@ Display::Display(byte addr)
 
 void Display::begin()
 {
-    _display.begin(_addr);
+  _display.begin(_addr);
 }
 
 // writeBadProgram writes badP on a 4 character alphanumeric display.
@@ -142,7 +142,7 @@ void Display::writeTargetTemperature(byte segment)
   _display.writeDisplay();
 }
 
-// writeTemperature writes 9999 to a 4 character alphanumeric display.
+// writeTemperature writes 9999. to a 4 character alphanumeric display.
 void Display::writeTemperature(int degreesCelsius) {
   // max temperature is 9999°C before the counting starts again at 0°C
   while(degreesCelsius > 9999) {
@@ -150,7 +150,7 @@ void Display::writeTemperature(int degreesCelsius) {
   }
 
   // temperature display must be right-aligned
-  char temperatureDigits[4];
+  char temperatureDigits[5];
   sprintf(temperatureDigits, "%4d", degreesCelsius);
 
   for (byte i = 0; i <= 3; i++) {
@@ -158,7 +158,7 @@ void Display::writeTemperature(int degreesCelsius) {
     if (temperatureDigits[i] == ' ') {
       _display.writeDigitRaw(i, 0x0000);
     } else {
-      // the temperature indicates that temperature is displayed in °C
+      // the temperature dot indicates that temperature is displayed in °C
       _display.writeDigitAscii(i, temperatureDigits[i], _writeTemperatureDot(i));
     }
   }
