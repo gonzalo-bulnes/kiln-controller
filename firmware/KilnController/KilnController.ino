@@ -21,14 +21,12 @@
 
 #include "Display.h"
 
-Adafruit_AlphaNum4 display = newDisplay();
+Display display(0x70);
 
 void setup() {
-  display.begin(0x70);
-  displayIdle(&display);
-  delay(1000);
+  display.begin();
 }
 
 void loop() {
-  displayIdle(&display);
+  display.writeIdle();
 }
