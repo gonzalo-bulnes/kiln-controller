@@ -47,6 +47,8 @@ void loop() {
   }
   display.writeStart();
   delay(delayBetweenMessages);
+  display.writeStop();
+  delay(delayBetweenMessages);
   for (byte i = 1; i <= 8; i++) {
     display.writeTargetTemperature(i);
     delay(delayBetweenMessages);

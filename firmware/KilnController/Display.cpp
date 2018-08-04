@@ -82,13 +82,23 @@ void Display::writeRamp(byte segment)
   _display.writeDisplay();
 }
 
-// writeStart write Strt on a 4 character alphanumeric display.
+// writeStart writes Strt on a 4 character alphanumeric display.
 void Display::writeStart()
 {
   _display.writeDigitAscii(0, 'S');
   _display.writeDigitAscii(1, 't');
   _display.writeDigitAscii(2, 'r');
   _display.writeDigitAscii(3, 't');
+  _display.writeDisplay();
+}
+
+// writeStop writes Stop on a 4 character alphanumeric display.
+void Display::writeStop()
+{
+  _display.writeDigitAscii(0, 'S');
+  _display.writeDigitAscii(1, 't');
+  _display.writeDigitAscii(2, 'o');
+  _display.writeDigitAscii(3, 'p');
   _display.writeDisplay();
 }
 
