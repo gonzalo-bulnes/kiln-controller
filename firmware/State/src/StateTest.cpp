@@ -34,6 +34,14 @@ const char * test_initial_state() {
     return 0;
 }
 
+const char * test_State_getState() {
+  State state;
+  mu_assert("ERROR: expected Pro1 Segment1 Step1 to be 111", state.getState(1,1,1) == 111);
+  mu_assert("ERROR: expected Pro3 Segment5 Step6 to be 111", state.getState(3,5,6) == 356);
+  mu_assert("ERROR: expected Pro4 Segment8 Step6 to be 111", state.getState(4,8,6) == 486);
+  return 0;
+}
+
 const char * test_STATE_IDLE_transitions() {
     State state;
     state.begin();
@@ -137,6 +145,7 @@ const char * test_STATE_Pro2_transitions() {
 }
 
 const char * all_tests() {
+    mu_run_test(test_State_getState);
     mu_run_test(test_initial_state);
     mu_run_test(test_STATE_IDLE_transitions);
     mu_run_test(test_STATE_Pro1_transitions);
