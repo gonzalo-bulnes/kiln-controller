@@ -141,3 +141,35 @@ void Display::writeTargetTemperature(byte segment)
   _display.writeDigitAscii(3, char(48 + segment));
   _display.writeDisplay();
 }
+
+// writeTemperature writes 9999 to a 4 character alphanumeric display.
+void Display::writeTemperature(int degreesCelsius) {
+  // max temperature is 9999°C before the counting starts again at 0°C
+  while(degreesCelsius > 9999) {
+    degreesCelsius = degreesCelsius - 9999;
+  }
+
+  // temperature display must be right-aligned
+  char temperatureDigits[4];
+  sprintf(temperatureDigits, "%4d", degreesCelsius);
+
+  for (byte i = 0; i <= 3; i++) {
+    // empty digits must be shut off
+    if (temperatureDigits[i] == ' ') {
+      _display.writeDigitRaw(i, 0x0000);
+    } else {
+      // the temperature indicates that temperature is displayed in °C
+      _display.writeDigitAscii(i, temperatureDigits[i], _writeTemperatureDot(i));
+    }
+  }
+  _display.writeDisplay();
+}
+
+// _writeTemperatureDot returns true if the digit is the lower right digit, else false.
+bool Display::_writeTemperatureDot(byte digit) {
+  // the lower right dot indicates that temperature is displayed in °C
+  if (digit == 3) {
+    return true;
+  }
+  return false;
+}

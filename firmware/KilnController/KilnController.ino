@@ -59,4 +59,6 @@ void loop() {
     display.writeTargetTemperature(i);
     delay(delayBetweenMessages);
   }
+  display.writeTemperature(254);
+  delay(delayBetweenMessages);
 }
