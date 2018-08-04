@@ -1,5 +1,5 @@
 /*
-  Display.h - Library for writing messages on a kiln controller display.
+  Display.cpp - Library for writing messages on a kiln controller display.
   Created by yctqmbo, 2018-07-28.
 
   This file is part of Kiln Controller
