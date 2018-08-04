@@ -147,6 +147,10 @@ void State::update()
       if (_buttonPressed == BUTTON_DOWN) {
         _current = STATE_NOT_SUPPORTED;
       }
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
       break;
     case STATE_PRO2_SEG1_RAMP:
       if (_buttonPressed == BUTTON_START) {
@@ -154,6 +158,10 @@ void State::update()
       }
       if (_buttonPressed == BUTTON_DOWN) {
         _current = STATE_NOT_SUPPORTED;
+      }
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
       }
       break;
     case STATE_PRO3_SEG1_RAMP:
@@ -163,6 +171,10 @@ void State::update()
       if (_buttonPressed == BUTTON_DOWN) {
         _current = STATE_NOT_SUPPORTED;
       }
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
       break;
     case STATE_PRO4_SEG1_RAMP:
       if (_buttonPressed == BUTTON_START) {
@@ -170,6 +182,130 @@ void State::update()
       }
       if (_buttonPressed == BUTTON_DOWN) {
         _current = STATE_NOT_SUPPORTED;
+      }
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO1_SEG1_RATE:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO2_SEG1_RATE:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO3_SEG1_RATE:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO4_SEG1_RATE:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO1_SEG1_TARGET:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO2_SEG1_TARGET:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO3_SEG1_TARGET:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO4_SEG1_TARGET:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO1_SEG1_TEMPERATURE:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO2_SEG1_TEMPERATURE:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO3_SEG1_TEMPERATURE:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO4_SEG1_TEMPERATURE:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO1_SEG1_HOLD:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO2_SEG1_HOLD:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO3_SEG1_HOLD:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO4_SEG1_HOLD:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO1_SEG1_TIME:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO2_SEG1_TIME:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO3_SEG1_TIME:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
+    case STATE_PRO4_SEG1_TIME:
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
       }
       break;
   }

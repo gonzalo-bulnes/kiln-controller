@@ -286,12 +286,282 @@ const char * test_timeout_in_STATE_PRO4() {
   return 0;
 }
 
+const char * test_timeout_in_STATE_PRO1_SEG1_RAMP() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO1_SEG1_RAMP);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO1_SEG1_RAMP to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO2_SEG1_RAMP() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO2_SEG1_RAMP);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO2_SEG1_RAMP to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO3_SEG1_RAMP() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO3_SEG1_RAMP);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO3_SEG1_RAMP to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO4_SEG1_RAMP() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO4_SEG1_RAMP);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO4_SEG1_RAMP to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO1_SEG1_RATE() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO1_SEG1_RATE);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO1_SEG1_RATE to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO2_SEG1_RATE() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO2_SEG1_RATE);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO2_SEG1_RATE to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO3_SEG1_RATE() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO3_SEG1_RATE);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO3_SEG1_RATE to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO4_SEG1_RATE() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO4_SEG1_RATE);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO4_SEG1_RATE to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO1_SEG1_TARGET() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO1_SEG1_TARGET);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected ATE_PRO1_SEG1_TARGET to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO2_SEG1_TARGET() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO2_SEG1_TARGET);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected ATE_PRO2_SEG1_TARGET to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO3_SEG1_TARGET() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO3_SEG1_TARGET);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected ATE_PRO3_SEG1_TARGET to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO4_SEG1_TARGET() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO4_SEG1_TARGET);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected ATE_PRO4_SEG1_TARGET to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO1_SEG1_TEMPERATURE() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO1_SEG1_TEMPERATURE);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected RO1_SEG1_TEMPERATURE to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO2_SEG1_TEMPERATURE() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO2_SEG1_TEMPERATURE);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected RO2_SEG1_TEMPERATURE to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO3_SEG1_TEMPERATURE() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO3_SEG1_TEMPERATURE);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected RO3_SEG1_TEMPERATURE to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO4_SEG1_TEMPERATURE() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO4_SEG1_TEMPERATURE);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected RO4_SEG1_TEMPERATURE to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO1_SEG1_HOLD() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO1_SEG1_HOLD);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO1_SEG1_HOLD to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO2_SEG1_HOLD() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO2_SEG1_HOLD);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO2_SEG1_HOLD to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO3_SEG1_HOLD() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO3_SEG1_HOLD);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO3_SEG1_HOLD to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO4_SEG1_HOLD() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO4_SEG1_HOLD);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO4_SEG1_HOLD to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO1_SEG1_TIME() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO1_SEG1_TIME);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO1_SEG1_TIME to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO2_SEG1_TIME() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO2_SEG1_TIME);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO2_SEG1_TIME to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO3_SEG1_TIME() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO3_SEG1_TIME);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO3_SEG1_TIME to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
+const char * test_timeout_in_STATE_PRO4_SEG1_TIME() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO4_SEG1_TIME);
+  state.timeout();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO4_SEG1_TIME to transition to STATE_IDLE after timeout", state.read() == STATE_IDLE);
+  return 0;
+}
+
 const char * test_timeout() {
   mu_run_test(test_timeout_in_STATE_IDLE);
   mu_run_test(test_timeout_in_STATE_PRO1);
   mu_run_test(test_timeout_in_STATE_PRO2);
   mu_run_test(test_timeout_in_STATE_PRO3);
   mu_run_test(test_timeout_in_STATE_PRO4);
+
+  mu_run_test(test_timeout_in_STATE_PRO1_SEG1_RAMP);
+  mu_run_test(test_timeout_in_STATE_PRO2_SEG1_RAMP);
+  mu_run_test(test_timeout_in_STATE_PRO3_SEG1_RAMP);
+  mu_run_test(test_timeout_in_STATE_PRO4_SEG1_RAMP);
+
+  mu_run_test(test_timeout_in_STATE_PRO1_SEG1_RATE);
+  mu_run_test(test_timeout_in_STATE_PRO2_SEG1_RATE);
+  mu_run_test(test_timeout_in_STATE_PRO3_SEG1_RATE);
+  mu_run_test(test_timeout_in_STATE_PRO4_SEG1_RATE);
+
+  mu_run_test(test_timeout_in_STATE_PRO1_SEG1_TARGET);
+  mu_run_test(test_timeout_in_STATE_PRO2_SEG1_TARGET);
+  mu_run_test(test_timeout_in_STATE_PRO3_SEG1_TARGET);
+  mu_run_test(test_timeout_in_STATE_PRO4_SEG1_TARGET);
+
+  mu_run_test(test_timeout_in_STATE_PRO1_SEG1_TEMPERATURE);
+  mu_run_test(test_timeout_in_STATE_PRO2_SEG1_TEMPERATURE);
+  mu_run_test(test_timeout_in_STATE_PRO3_SEG1_TEMPERATURE);
+  mu_run_test(test_timeout_in_STATE_PRO4_SEG1_TEMPERATURE);
+
+  mu_run_test(test_timeout_in_STATE_PRO1_SEG1_HOLD);
+  mu_run_test(test_timeout_in_STATE_PRO2_SEG1_HOLD);
+  mu_run_test(test_timeout_in_STATE_PRO3_SEG1_HOLD);
+  mu_run_test(test_timeout_in_STATE_PRO4_SEG1_HOLD);
+
+  mu_run_test(test_timeout_in_STATE_PRO1_SEG1_TIME);
+  mu_run_test(test_timeout_in_STATE_PRO2_SEG1_TIME);
+  mu_run_test(test_timeout_in_STATE_PRO3_SEG1_TIME);
+  mu_run_test(test_timeout_in_STATE_PRO4_SEG1_TIME);
   return 0;
 }
 
