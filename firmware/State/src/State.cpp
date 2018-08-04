@@ -30,7 +30,6 @@ State::State()
 
 void State::begin()
 {
-  printf("State initialized.\n");
   _current = _default;
   _buttonPressed = BUTTON_NONE;
   _timeoutExpired = false;
@@ -39,7 +38,6 @@ void State::begin()
 void State::downButton()
 {
   _buttonPressed = BUTTON_DOWN;
-  printf("  Button pressed: Down.\n");
 }
 
 int State::read()
@@ -50,25 +48,21 @@ int State::read()
 void State::startButton()
 {
   _buttonPressed = BUTTON_START;
-  printf("  Button pressed: Start.\n");
 }
 
 void State::upButton()
 {
   _buttonPressed = BUTTON_UP;
-  printf("  Button pressed: Up.\n");
 }
 
 void State::timeout()
 {
   _timeoutExpired = true;
-  printf("  Timeout expired.\n");
 }
 
 void State::_timeoutReset()
 {
   _timeoutExpired = false;
-  printf("  Timeout reset.\n");
 }
 
 void State::unsafelySet(int state) {
@@ -179,6 +173,4 @@ void State::update()
       }
       break;
   }
-  printf("  State updated.\n");
-  printf("    Current state: %d\n", read());
 }
