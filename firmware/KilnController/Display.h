@@ -43,10 +43,12 @@ class Display
     void writeStop();
     void writeTargetTemperature(byte segment);
     void writeTemperature(int degreesCelsius);
+    void writeTime(int minutes);
   private:
     byte _addr;
     Adafruit_AlphaNum4 _display;
     bool _writeTemperatureDot(byte digit);
+    bool _writeTimeDot(byte digit);
 };
 
 #endif

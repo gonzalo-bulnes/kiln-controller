@@ -165,10 +165,47 @@ void Display::writeTemperature(int degreesCelsius) {
   _display.writeDisplay();
 }
 
+// writeTime writes 99.59 to a 4 character alphanumeric display (pattern: hours.minutes).
+void Display::writeTime(int minutes) {
+  // max time is 5999min before the counting starts again at 0min
+  while(minutes > 5999) {
+    minutes = minutes - 5999;
+  }
+
+  int hours = minutes / 60; // 99 hours fit in a byte
+  int min = minutes - (hours*60); // 59 minutes fit in a byte
+
+  // hours display must be right-aligned and have a leading zero when needed
+  char _hoursDigits[3];
+  sprintf(_hoursDigits, "%02d", hours);
+
+  // minutes display must be right-aligned and have a leading zero when needed
+  char minDigits[3];
+  sprintf(minDigits, "%02d", min);
+
+  for (byte i = 0; i <= 1; i++) {
+    // the central dot indicates that time is displayed
+    _display.writeDigitAscii(i, _hoursDigits[i], _writeTimeDot(i));
+  }
+  for (byte i = 0; i <= 1; i++) {
+    _display.writeDigitAscii(i+2, minDigits[i]);
+  }
+  _display.writeDisplay();
+}
+
 // _writeTemperatureDot returns true if the digit is the lower right digit, else false.
 bool Display::_writeTemperatureDot(byte digit) {
   // the lower right dot indicates that temperature is displayed in °C
   if (digit == 3) {
+    return true;
+  }
+  return false;
+}
+
+// _writeTimeDot returns true if the digit is the second digit, else false.
+bool Display::_writeTimeDot(byte digit) {
+  // the central dot separates hours and minutes
+  if (digit == 1) {
     return true;
   }
   return false;
