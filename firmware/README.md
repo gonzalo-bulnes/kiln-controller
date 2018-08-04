@@ -19,10 +19,14 @@ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 Overview
 --------
 
-Currently, the code targets a [Arduino microcontroller][arduino] and is entirely conteined in the [`KilnController` project][KilnController].
+Currently, the code targets an [Arduino microcontroller][arduino] and is entirely contained in:
+
+- the [`KilnController` project][KilnController]
+- the [`State`][State] library
 
   [arduino]: https://arduino.cc
   [KilnController]: ./KilnController
+  [State]: ./State
 
 Usage
 -----
