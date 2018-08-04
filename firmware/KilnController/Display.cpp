@@ -35,9 +35,9 @@ void Display::begin()
 // writeBadProgram displays badP on a 4 character alphanumeric display.
 void Display::writeBadProgram()
 {
-  _display.writeDigitRaw(0, 0x00fc);
-  _display.writeDigitRaw(1, 0x00df);
-  _display.writeDigitRaw(2, 0x00de);
+  _display.writeDigitAscii(0, 'B');
+  _display.writeDigitAscii(1, 'a');
+  _display.writeDigitAscii(2, 'd');
   _display.writeDigitAscii(3, 'P');
   _display.writeDisplay();
 }
@@ -45,10 +45,10 @@ void Display::writeBadProgram()
 // writeIdle displays IdLE on a 4 character alphanumeric display.
 void Display::writeIdle()
 {
-  _display.writeDigitRaw(0, 0x0006);
-  _display.writeDigitRaw(1, 0x00de);
-  _display.writeDigitAscii(2, 'L');
-  _display.writeDigitAscii(3, 'E');
+  _display.writeDigitAscii(0, 'I');
+  _display.writeDigitAscii(1, 'd');
+  _display.writeDigitAscii(2, 'l');
+  _display.writeDigitAscii(3, 'e');
   _display.writeDisplay();
 }
 
@@ -56,8 +56,8 @@ void Display::writeIdle()
 void Display::writeProgram(byte number)
 {
   _display.writeDigitAscii(0, 'P');
-  _display.writeDigitRaw(1, 0x00d0);
-  _display.writeDigitAscii(2, 'O');
+  _display.writeDigitAscii(1, 'r');
+  _display.writeDigitAscii(2, 'o');
   _display.writeDigitAscii(3, char(48 + number));
   _display.writeDisplay();
 }
@@ -65,8 +65,8 @@ void Display::writeProgram(byte number)
 // writeRamp writes rA 1-9 to a 4 character alphanumeric display.
 void Display::writeRamp(byte segment)
 {
-  _display.writeDigitRaw(0, 0x00d0);
-  _display.writeDigitAscii(1, 'A');
+  _display.writeDigitAscii(0, 'R');
+  _display.writeDigitAscii(1, 'a');
   _display.writeDigitRaw(2, 0x0000);
   _display.writeDigitAscii(3, char(48 + segment));
   _display.writeDisplay();
