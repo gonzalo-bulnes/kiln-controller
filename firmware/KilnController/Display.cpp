@@ -52,6 +52,16 @@ void Display::writeHold(byte segment)
   _display.writeDisplay();
 }
 
+// writeOn writes -On- on a 4 character alphanumeric display.
+void Display::writeOn()
+{
+  _display.writeDigitAscii(0, '-');
+  _display.writeDigitAscii(1, 'O');
+  _display.writeDigitAscii(2, 'n');
+  _display.writeDigitAscii(3, '-');
+  _display.writeDisplay();
+}
+
 // writeIdle writes IdLE on a 4 character alphanumeric display.
 void Display::writeIdle()
 {

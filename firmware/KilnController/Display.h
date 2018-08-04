@@ -34,6 +34,7 @@ class Display
     void writeBadProgram();
     void writeIdle();
     void writeHold(byte segment);
+    void writeOn();
     void writeProgram(byte number);
     void writeRamp(byte segment);
     void writeStart();

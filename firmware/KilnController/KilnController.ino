@@ -37,6 +37,8 @@ void loop() {
     display.writeHold(i);
     delay(delayBetweenMessages);
   }
+  display.writeOn();
+  delay(delayBetweenMessages);
   for (byte i = 1; i <= 4; i++) {
     display.writeProgram(i);
     delay(delayBetweenMessages);
