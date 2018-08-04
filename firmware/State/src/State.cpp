@@ -71,6 +71,10 @@ void State::_timeoutReset()
   printf("  Timeout reset.\n");
 }
 
+void State::unsafelySet(int state) {
+  _current = state;
+}
+
 void State::update()
 {
   switch (_current) {

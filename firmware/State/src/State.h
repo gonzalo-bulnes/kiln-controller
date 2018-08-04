@@ -45,6 +45,7 @@ class State
     int read();
     void startButton();
     void timeout();
+    void unsafelySet(int state);
     void upButton();
     void update();
   private:
