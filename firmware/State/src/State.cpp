@@ -33,6 +33,7 @@ void State::begin()
   printf("State initialized.\n");
   _current = _default;
   _buttonPressed = BUTTON_NONE;
+  _timeoutExpired = false;
 }
 
 void State::downButton()
@@ -58,6 +59,18 @@ void State::upButton()
   printf("  Button pressed: Up.\n");
 }
 
+void State::timeout()
+{
+  _timeoutExpired = true;
+  printf("  Timeout expired.\n");
+}
+
+void State::_timeoutReset()
+{
+  _timeoutExpired = false;
+  printf("  Timeout reset.\n");
+}
+
 void State::update()
 {
   switch (_current) {
@@ -67,6 +80,21 @@ void State::update()
       }
       if (_buttonPressed == BUTTON_START) {
         _current = STATE_Pro1;
+      }
+      break;
+    case STATE_Pro1:
+      if (_buttonPressed == BUTTON_DOWN) {
+        _current = STATE_NOT_SUPPORTED;
+      }
+      if (_buttonPressed == BUTTON_START) {
+        _current = STATE_Pro1_Ra_1;
+      }
+      if (_buttonPressed == BUTTON_UP) {
+        _current = STATE_Pro2;
+      }
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
       }
       break;
   }

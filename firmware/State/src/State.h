@@ -27,6 +27,8 @@ const int BUTTON_DOWN = 3;
 const int STATE_IDLE = 1;
 const int STATE_Pro1 = 2;
 const int STATE_NOT_SUPPORTED = 3;
+const int STATE_Pro2 = 4;
+const int STATE_Pro1_Ra_1 = 5;
 
 class State
 {
@@ -36,12 +38,15 @@ class State
     void downButton();
     int read();
     void startButton();
+    void timeout();
     void upButton();
     void update();
   private:
     int _default;
     int _current;
     int _buttonPressed;
+    bool _timeoutExpired;
+    void _timeoutReset();
 };
 
 #endif
