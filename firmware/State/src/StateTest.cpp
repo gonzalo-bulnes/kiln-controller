@@ -187,12 +187,74 @@ const char * test_STATE_Pro3_transitions() {
 
     return 0;
 }
+
+const char * test_STATE_Pro4_transitions() {
+    State state;
+    state.begin();
+    state.startButton();
+    state.update();
+    state.upButton();
+    state.update();
+    state.upButton();
+    state.update();
+    state.upButton();
+    state.update();
+    state.startButton();
+    state.update();
+    mu_assert("ERROR: expected STATE_Pro4 to transition to STATE_Pro4_Ra_1 after Start button was pressed", state.read() == STATE_Pro4_Ra_1);
+
+    State state2;
+    state2.begin();
+    state2.startButton();
+    state2.update();
+    state2.upButton();
+    state2.update();
+    state2.upButton();
+    state2.update();
+    state2.upButton();
+    state2.update();
+    state2.upButton();
+    state2.update();
+    mu_assert("ERROR: expected STATE_Pro4 to transition to STATE_Pro1 after Up button was pressed", state2.read() == STATE_Pro1);
+
+    State state3;
+    state3.begin();
+    state3.startButton();
+    state3.update();
+    state3.upButton();
+    state3.update();
+    state3.upButton();
+    state3.update();
+    state3.upButton();
+    state3.update();
+    state3.downButton();
+    state3.update();
+    mu_assert("ERROR: expected STATE_Pro4 to transition to STATE_NOT_SUPPORTED after Down button was pressed", state3.read() == STATE_NOT_SUPPORTED);
+
+    State state4;
+    state4.begin();
+    state4.startButton();
+    state4.update();
+    state4.upButton();
+    state4.update();
+    state4.upButton();
+    state4.update();
+    state4.upButton();
+    state4.update();
+    state4.timeout();
+    state4.update();
+    mu_assert("ERROR: expected STATE_Pro3 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
+
+    return 0;
+}
+
 const char * all_tests() {
     mu_run_test(test_initial_state);
     mu_run_test(test_STATE_IDLE_transitions);
     mu_run_test(test_STATE_Pro1_transitions);
     mu_run_test(test_STATE_Pro2_transitions);
     mu_run_test(test_STATE_Pro3_transitions);
+    mu_run_test(test_STATE_Pro4_transitions);
     return 0;
 }
 
