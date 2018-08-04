@@ -146,6 +146,26 @@ void State::update()
         _timeoutReset();
       }
       break;
+    case STATE_PRO1_SEG1_RAMP:
+      if (_buttonPressed == BUTTON_START) {
+        _current = STATE_PRO1_SEG1_RATE;
+      }
+      break;
+    case STATE_PRO2_SEG1_RAMP:
+      if (_buttonPressed == BUTTON_START) {
+        _current = STATE_PRO2_SEG1_RATE;
+      }
+      break;
+    case STATE_PRO3_SEG1_RAMP:
+      if (_buttonPressed == BUTTON_START) {
+        _current = STATE_PRO3_SEG1_RATE;
+      }
+      break;
+    case STATE_PRO4_SEG1_RAMP:
+      if (_buttonPressed == BUTTON_START) {
+        _current = STATE_PRO4_SEG1_RATE;
+      }
+      break;
   }
   printf("  State updated.\n");
   printf("    Current state: %d\n", read());

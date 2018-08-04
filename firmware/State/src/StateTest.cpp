@@ -141,12 +141,56 @@ const char * test_start_button_in_STATE_PRO4() {
   return 0;
 }
 
+const char * test_start_button_in_STATE_PRO1_SEG1_RAMP() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO1_SEG1_RAMP);
+  state.startButton();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO1_SEG1_RAMP to transition to STATE_PRO1_SEG1_RATE after Start button was pressed", state.read() == STATE_PRO1_SEG1_RATE);
+  return 0;
+}
+
+const char * test_start_button_in_STATE_PRO2_SEG1_RAMP() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO2_SEG1_RAMP);
+  state.startButton();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO2_SEG1_RAMP to transition to STATE_PRO2_SEG1_RATE after Start button was pressed", state.read() == STATE_PRO2_SEG1_RATE);
+  return 0;
+}
+
+const char * test_start_button_in_STATE_PRO3_SEG1_RAMP() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO3_SEG1_RAMP);
+  state.startButton();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO3_SEG1_RAMP to transition to STATE_PRO3_SEG1_RATE after Start button was pressed", state.read() == STATE_PRO3_SEG1_RATE);
+  return 0;
+}
+
+const char * test_start_button_in_STATE_PRO4_SEG1_RAMP() {
+  State state;
+  state.begin();
+  state.unsafelySet(STATE_PRO4_SEG1_RAMP);
+  state.startButton();
+  state.update();
+  mu_assert("ERROR: expected STATE_PRO4_SEG1_RAMP to transition to STATE_PRO4_SEG1_RATE after Start button was pressed", state.read() == STATE_PRO4_SEG1_RATE);
+  return 0;
+}
+
 const char * test_start_button() {
   mu_run_test(test_start_button_in_STATE_IDLE);
   mu_run_test(test_start_button_in_STATE_PRO1);
   mu_run_test(test_start_button_in_STATE_PRO2);
   mu_run_test(test_start_button_in_STATE_PRO3);
   mu_run_test(test_start_button_in_STATE_PRO4);
+  mu_run_test(test_start_button_in_STATE_PRO1_SEG1_RAMP);
+  mu_run_test(test_start_button_in_STATE_PRO2_SEG1_RAMP);
+  mu_run_test(test_start_button_in_STATE_PRO3_SEG1_RAMP);
+  mu_run_test(test_start_button_in_STATE_PRO4_SEG1_RAMP);
   return 0;
 }
 

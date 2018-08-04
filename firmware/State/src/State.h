@@ -35,6 +35,10 @@ const int STATE_PRO2_SEG1_RAMP = 7;
 const int STATE_PRO4 = 8;
 const int STATE_PRO3_SEG1_RAMP = 9;
 const int STATE_PRO4_SEG1_RAMP = 10;
+const int STATE_PRO1_SEG1_RATE = 11;
+const int STATE_PRO2_SEG1_RATE = 12;
+const int STATE_PRO3_SEG1_RATE = 13;
+const int STATE_PRO4_SEG1_RATE = 14;
 
 class State
 {
