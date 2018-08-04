@@ -79,63 +79,63 @@ void State::update()
         _current = STATE_NOT_SUPPORTED;
       }
       if (_buttonPressed == BUTTON_START) {
-        _current = STATE_Pro1;
+        _current = STATE_PRO1;
       }
       break;
-    case STATE_Pro1:
+    case STATE_PRO1:
       if (_buttonPressed == BUTTON_DOWN) {
         _current = STATE_NOT_SUPPORTED;
       }
       if (_buttonPressed == BUTTON_START) {
-        _current = STATE_Pro1_Ra_1;
+        _current = STATE_PRO1_SEG1_RAMP;
       }
       if (_buttonPressed == BUTTON_UP) {
-        _current = STATE_Pro2;
+        _current = STATE_PRO2;
       }
       if (_timeoutExpired == true) {
         _current = STATE_IDLE;
         _timeoutReset();
       }
       break;
-    case STATE_Pro2:
+    case STATE_PRO2:
       if (_buttonPressed == BUTTON_DOWN) {
         _current = STATE_NOT_SUPPORTED;
       }
       if (_buttonPressed == BUTTON_START) {
-        _current = STATE_Pro2_Ra_1;
+        _current = STATE_PRO2_SEG1_RAMP;
       }
       if (_buttonPressed == BUTTON_UP) {
-        _current = STATE_Pro3;
+        _current = STATE_PRO3;
       }
       if (_timeoutExpired == true) {
         _current = STATE_IDLE;
         _timeoutReset();
       }
       break;
-    case STATE_Pro3:
+    case STATE_PRO3:
       if (_buttonPressed == BUTTON_DOWN) {
         _current = STATE_NOT_SUPPORTED;
       }
       if (_buttonPressed == BUTTON_START) {
-        _current = STATE_Pro3_Ra_1;
+        _current = STATE_PRO3_SEG1_RAMP;
       }
       if (_buttonPressed == BUTTON_UP) {
-        _current = STATE_Pro4;
+        _current = STATE_PRO4;
       }
       if (_timeoutExpired == true) {
         _current = STATE_IDLE;
         _timeoutReset();
       }
       break;
-    case STATE_Pro4:
+    case STATE_PRO4:
       if (_buttonPressed == BUTTON_DOWN) {
         _current = STATE_NOT_SUPPORTED;
       }
       if (_buttonPressed == BUTTON_START) {
-        _current = STATE_Pro4_Ra_1;
+        _current = STATE_PRO4_SEG1_RAMP;
       }
       if (_buttonPressed == BUTTON_UP) {
-        _current = STATE_Pro1;
+        _current = STATE_PRO1;
       }
       if (_timeoutExpired == true) {
         _current = STATE_IDLE;

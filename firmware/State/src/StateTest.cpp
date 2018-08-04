@@ -39,7 +39,7 @@ const char * test_STATE_IDLE_transitions() {
     state.begin();
     state.startButton();
     state.update();
-    mu_assert("ERROR: expected STATE_IDLE to transition to STATE_Pro1 after Start button was pressed", state.read() == STATE_Pro1);
+    mu_assert("ERROR: expected STATE_IDLE to transition to STATE_PRO1 after Start button was pressed", state.read() == STATE_PRO1);
 
     State state2;
     state2.begin();
@@ -56,14 +56,14 @@ const char * test_STATE_IDLE_transitions() {
     return 0;
 }
 
-const char * test_STATE_Pro1_transitions() {
+const char * test_STATE_PRO1_transitions() {
     State state;
     state.begin();
     state.startButton();
     state.update();
     state.startButton();
     state.update();
-    mu_assert("ERROR: expected STATE_Pro1 to transition to STATE_Pro1_Ra_1 after Start button was pressed", state.read() == STATE_Pro1_Ra_1);
+    mu_assert("ERROR: expected STATE_PRO1 to transition to STATE_PRO1_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO1_SEG1_RAMP);
 
     State state2;
     state2.begin();
@@ -71,7 +71,7 @@ const char * test_STATE_Pro1_transitions() {
     state2.update();
     state2.upButton();
     state2.update();
-    mu_assert("ERROR: expected STATE_Pro1 to transition to STATE_Pro2 after Up button was pressed", state2.read() == STATE_Pro2);
+    mu_assert("ERROR: expected STATE_PRO1 to transition to STATE_PRO2 after Up button was pressed", state2.read() == STATE_PRO2);
 
     State state3;
     state3.begin();
@@ -79,7 +79,7 @@ const char * test_STATE_Pro1_transitions() {
     state3.update();
     state3.downButton();
     state3.update();
-    mu_assert("ERROR: expected STATE_Pro1 to transition to STATE_NOT_SUPPORTED after Down button was pressed", state3.read() == STATE_NOT_SUPPORTED);
+    mu_assert("ERROR: expected STATE_PRO1 to transition to STATE_NOT_SUPPORTED after Down button was pressed", state3.read() == STATE_NOT_SUPPORTED);
 
     State state4;
     state4.begin();
@@ -87,12 +87,12 @@ const char * test_STATE_Pro1_transitions() {
     state4.update();
     state4.timeout();
     state4.update();
-    mu_assert("ERROR: expected STATE_Pro1 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
+    mu_assert("ERROR: expected STATE_PRO1 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
 
     return 0;
 }
 
-const char * test_STATE_Pro2_transitions() {
+const char * test_STATE_PRO2_transitions() {
     State state;
     state.begin();
     state.startButton();
@@ -101,7 +101,7 @@ const char * test_STATE_Pro2_transitions() {
     state.update();
     state.startButton();
     state.update();
-    mu_assert("ERROR: expected STATE_Pro2 to transition to STATE_Pro2_Ra_1 after Start button was pressed", state.read() == STATE_Pro2_Ra_1);
+    mu_assert("ERROR: expected STATE_PRO2 to transition to STATE_PRO2_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO2_SEG1_RAMP);
 
     State state2;
     state2.begin();
@@ -111,7 +111,7 @@ const char * test_STATE_Pro2_transitions() {
     state2.update();
     state2.upButton();
     state2.update();
-    mu_assert("ERROR: expected STATE_Pro2 to transition to STATE_Pro3 after Up button was pressed", state2.read() == STATE_Pro3);
+    mu_assert("ERROR: expected STATE_PRO2 to transition to STATE_PRO3 after Up button was pressed", state2.read() == STATE_PRO3);
 
     State state3;
     state3.begin();
@@ -121,7 +121,7 @@ const char * test_STATE_Pro2_transitions() {
     state3.update();
     state3.downButton();
     state3.update();
-    mu_assert("ERROR: expected STATE_Pro2 to transition to STATE_NOT_SUPPORTED after Down button was pressed", state3.read() == STATE_NOT_SUPPORTED);
+    mu_assert("ERROR: expected STATE_PRO2 to transition to STATE_NOT_SUPPORTED after Down button was pressed", state3.read() == STATE_NOT_SUPPORTED);
 
     State state4;
     state4.begin();
@@ -131,12 +131,12 @@ const char * test_STATE_Pro2_transitions() {
     state4.update();
     state4.timeout();
     state4.update();
-    mu_assert("ERROR: expected STATE_Pro2 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
+    mu_assert("ERROR: expected STATE_PRO2 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
 
     return 0;
 }
 
-const char * test_STATE_Pro3_transitions() {
+const char * test_STATE_PRO3_transitions() {
     State state;
     state.begin();
     state.startButton();
@@ -147,7 +147,7 @@ const char * test_STATE_Pro3_transitions() {
     state.update();
     state.startButton();
     state.update();
-    mu_assert("ERROR: expected STATE_Pro3 to transition to STATE_Pro3_Ra_1 after Start button was pressed", state.read() == STATE_Pro3_Ra_1);
+    mu_assert("ERROR: expected STATE_PRO3 to transition to STATE_PRO3_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO3_SEG1_RAMP);
 
     State state2;
     state2.begin();
@@ -159,7 +159,7 @@ const char * test_STATE_Pro3_transitions() {
     state2.update();
     state2.upButton();
     state2.update();
-    mu_assert("ERROR: expected STATE_Pro3 to transition to STATE_Pro4 after Up button was pressed", state2.read() == STATE_Pro4);
+    mu_assert("ERROR: expected STATE_PRO3 to transition to STATE_PRO4 after Up button was pressed", state2.read() == STATE_PRO4);
 
     State state3;
     state3.begin();
@@ -171,7 +171,7 @@ const char * test_STATE_Pro3_transitions() {
     state3.update();
     state3.downButton();
     state3.update();
-    mu_assert("ERROR: expected STATE_Pro3 to transition to STATE_NOT_SUPPORTED after Down button was pressed", state3.read() == STATE_NOT_SUPPORTED);
+    mu_assert("ERROR: expected STATE_PRO3 to transition to STATE_NOT_SUPPORTED after Down button was pressed", state3.read() == STATE_NOT_SUPPORTED);
 
     State state4;
     state4.begin();
@@ -183,12 +183,12 @@ const char * test_STATE_Pro3_transitions() {
     state4.update();
     state4.timeout();
     state4.update();
-    mu_assert("ERROR: expected STATE_Pro3 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
+    mu_assert("ERROR: expected STATE_PRO3 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
 
     return 0;
 }
 
-const char * test_STATE_Pro4_transitions() {
+const char * test_STATE_PRO4_transitions() {
     State state;
     state.begin();
     state.startButton();
@@ -201,7 +201,7 @@ const char * test_STATE_Pro4_transitions() {
     state.update();
     state.startButton();
     state.update();
-    mu_assert("ERROR: expected STATE_Pro4 to transition to STATE_Pro4_Ra_1 after Start button was pressed", state.read() == STATE_Pro4_Ra_1);
+    mu_assert("ERROR: expected STATE_PRO4 to transition to STATE_PRO4_SEG1_RAMP after Start button was pressed", state.read() == STATE_PRO4_SEG1_RAMP);
 
     State state2;
     state2.begin();
@@ -215,7 +215,7 @@ const char * test_STATE_Pro4_transitions() {
     state2.update();
     state2.upButton();
     state2.update();
-    mu_assert("ERROR: expected STATE_Pro4 to transition to STATE_Pro1 after Up button was pressed", state2.read() == STATE_Pro1);
+    mu_assert("ERROR: expected STATE_PRO4 to transition to STATE_PRO1 after Up button was pressed", state2.read() == STATE_PRO1);
 
     State state3;
     state3.begin();
@@ -229,7 +229,7 @@ const char * test_STATE_Pro4_transitions() {
     state3.update();
     state3.downButton();
     state3.update();
-    mu_assert("ERROR: expected STATE_Pro4 to transition to STATE_NOT_SUPPORTED after Down button was pressed", state3.read() == STATE_NOT_SUPPORTED);
+    mu_assert("ERROR: expected STATE_PRO4 to transition to STATE_NOT_SUPPORTED after Down button was pressed", state3.read() == STATE_NOT_SUPPORTED);
 
     State state4;
     state4.begin();
@@ -243,7 +243,7 @@ const char * test_STATE_Pro4_transitions() {
     state4.update();
     state4.timeout();
     state4.update();
-    mu_assert("ERROR: expected STATE_Pro3 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
+    mu_assert("ERROR: expected STATE_PRO3 to transition to STATE_IDLE after timeout", state4.read() == STATE_IDLE);
 
     return 0;
 }
@@ -251,10 +251,10 @@ const char * test_STATE_Pro4_transitions() {
 const char * all_tests() {
     mu_run_test(test_initial_state);
     mu_run_test(test_STATE_IDLE_transitions);
-    mu_run_test(test_STATE_Pro1_transitions);
-    mu_run_test(test_STATE_Pro2_transitions);
-    mu_run_test(test_STATE_Pro3_transitions);
-    mu_run_test(test_STATE_Pro4_transitions);
+    mu_run_test(test_STATE_PRO1_transitions);
+    mu_run_test(test_STATE_PRO2_transitions);
+    mu_run_test(test_STATE_PRO3_transitions);
+    mu_run_test(test_STATE_PRO4_transitions);
     return 0;
 }
 

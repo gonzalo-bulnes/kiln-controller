@@ -24,16 +24,17 @@ const int BUTTON_NONE = 0;
 const int BUTTON_START = 1;
 const int BUTTON_UP = 2;
 const int BUTTON_DOWN = 3;
+
 const int STATE_IDLE = 1;
-const int STATE_Pro1 = 2;
+const int STATE_PRO1 = 2;
 const int STATE_NOT_SUPPORTED = 3;
-const int STATE_Pro2 = 4;
-const int STATE_Pro1_Ra_1 = 5;
-const int STATE_Pro3 = 6;
-const int STATE_Pro2_Ra_1 = 7;
-const int STATE_Pro4 = 8;
-const int STATE_Pro3_Ra_1 = 9;
-const int STATE_Pro4_Ra_1 = 10;
+const int STATE_PRO2 = 4;
+const int STATE_PRO1_SEG1_RAMP = 5;
+const int STATE_PRO3 = 6;
+const int STATE_PRO2_SEG1_RAMP = 7;
+const int STATE_PRO4 = 8;
+const int STATE_PRO3_SEG1_RAMP = 9;
+const int STATE_PRO4_SEG1_RAMP = 10;
 
 class State
 {
