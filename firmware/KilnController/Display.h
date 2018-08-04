@@ -33,8 +33,10 @@ class Display
     void begin();
     void writeBadProgram();
     void writeIdle();
+    void writeHold(byte segment);
     void writeProgram(byte number);
     void writeRamp(byte segment);
+    void writeTargetTemperature(byte segment);
   private:
     byte _addr;
     Adafruit_AlphaNum4 _display;

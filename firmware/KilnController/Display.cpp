@@ -42,6 +42,16 @@ void Display::writeBadProgram()
   _display.writeDisplay();
 }
 
+// writeHold writes Hld1-9 to a 4 character alphanumeric display.
+void Display::writeHold(byte segment)
+{
+  _display.writeDigitAscii(0, 'H');
+  _display.writeDigitAscii(1, 'l');
+  _display.writeDigitAscii(2, 'd');
+  _display.writeDigitAscii(3, char(48 + segment));
+  _display.writeDisplay();
+}
+
 // writeIdle displays IdLE on a 4 character alphanumeric display.
 void Display::writeIdle()
 {
@@ -67,6 +77,16 @@ void Display::writeRamp(byte segment)
 {
   _display.writeDigitAscii(0, 'R');
   _display.writeDigitAscii(1, 'a');
+  _display.writeDigitRaw(2, 0x0000);
+  _display.writeDigitAscii(3, char(48 + segment));
+  _display.writeDisplay();
+}
+
+// writeTargetTemperature writes °C 1-9 to a 4 character alphanumeric display.
+void Display::writeTargetTemperature(byte segment)
+{
+  _display.writeDigitRaw(0, 0x00e3);
+  _display.writeDigitAscii(1, 'C');
   _display.writeDigitRaw(2, 0x0000);
   _display.writeDigitAscii(3, char(48 + segment));
   _display.writeDisplay();

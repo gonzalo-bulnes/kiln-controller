@@ -28,7 +28,7 @@ void setup() {
 }
 
 void loop() {
-  int delayBetweenMessages = 500;
+  int delayBetweenMessages = 250;
   display.writeIdle();
   delay(delayBetweenMessages);
   display.writeBadProgram();
@@ -39,6 +39,14 @@ void loop() {
   }
   for (byte i = 1; i <= 8; i++) {
     display.writeRamp(i);
+    delay(delayBetweenMessages);
+  }
+  for (byte i = 1; i <= 8; i++) {
+    display.writeTargetTemperature(i);
+    delay(delayBetweenMessages);
+  }
+  for (byte i = 1; i <= 8; i++) {
+    display.writeHold(i);
     delay(delayBetweenMessages);
   }
 }
