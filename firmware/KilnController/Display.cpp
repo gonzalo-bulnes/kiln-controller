@@ -52,6 +52,16 @@ void Display::writeComplete()
   _display.writeDisplay();
 }
 
+// writeFull writes Full on a 4 character alphanumeric display.
+void Display::writeFull()
+{
+  _display.writeDigitAscii(0, 'F');
+  _display.writeDigitAscii(1, 'u');
+  _display.writeDigitAscii(2, 'l');
+  _display.writeDigitAscii(3, 'l');
+  _display.writeDisplay();
+}
+
 // writeHold writes Hld1-9 to a 4 character alphanumeric display.
 void Display::writeHold(byte segment)
 {

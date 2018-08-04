@@ -33,6 +33,7 @@ class Display
     void begin();
     void writeBadProgram();
     void writeComplete();
+    void writeFull();
     void writeIdle();
     void writeHold(byte segment);
     void writeOn();
