@@ -33,18 +33,8 @@ class Display
     void begin();
     void writeBadProgram();
     void writeIdle();
-    void writeProgram1();
-    void writeProgram2();
-    void writeProgram3();
-    void writeProgram4();
-    void writeRamp1();
-    void writeRamp2();
-    void writeRamp3();
-    void writeRamp4();
-    void writeRamp5();
-    void writeRamp6();
-    void writeRamp7();
-    void writeRamp8();
+    void writeProgram(byte number);
+    void writeRamp(byte segment);
   private:
     byte _addr;
     Adafruit_AlphaNum4 _display;
