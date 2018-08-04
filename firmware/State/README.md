@@ -10,10 +10,53 @@ Usage
 
 This library is intended to be used by an Arduino sketch, but is developed independently to allow simple automated testing.
 
+```c
+// Not far from now, in an Arduino sketch familiar to us...
+
+#include "State.h"
+#include "Display.h"
+#include "Keypad.h"
+
+Keypad keypad(2); // produces inputs
+State state(); // consumes inputs, produces outputs
+Display display(0x70); // consumes outputs
+
+void setup() {
+  display.begin();
+  keypad.begin();
+  state.begin();
+}
+
+void loop() {
+  // collect data from sensors, user interface:
+  // example: read the state of the keypad
+  keypad.read();
+  // ...
+
+  // input the data:
+  if (keypad.startPressed() == true) {
+    state.startButton();
+  }
+  if (keypad.upPressed() == true) {
+    state.upButton();
+  }
+  // ...
+
+  // calculate the new state:
+  state.update();
+
+  // output the new state:
+  display.now(state.read());
+}
+```
+
+Development
+-----------
+
 ### Run the test suite
 
 ```bash
-cd minunit # if necessary
+cd firmware/State # if necessary
 make && ./bin/StateTest
 ```
 
