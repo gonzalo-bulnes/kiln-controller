@@ -97,6 +97,22 @@ void State::update()
         _timeoutReset();
       }
       break;
+    case STATE_Pro2:
+      if (_buttonPressed == BUTTON_DOWN) {
+        _current = STATE_NOT_SUPPORTED;
+      }
+      if (_buttonPressed == BUTTON_START) {
+        _current = STATE_Pro2_Ra_1;
+      }
+      if (_buttonPressed == BUTTON_UP) {
+        _current = STATE_Pro3;
+      }
+      if (_timeoutExpired == true) {
+        _current = STATE_IDLE;
+        _timeoutReset();
+      }
+      break;
   }
   printf("  State updated.\n");
+  printf("    Current state: %d\n", read());
 }
