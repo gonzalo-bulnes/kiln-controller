@@ -22,16 +22,21 @@
 
 const int BUTTON_NONE = 0;
 const int BUTTON_START = 1;
+const int BUTTON_UP = 2;
+const int BUTTON_DOWN = 3;
 const int STATE_IDLE = 1;
 const int STATE_Pro1 = 2;
+const int STATE_NOT_SUPPORTED = 3;
 
 class State
 {
   public:
     State();
     void begin();
+    void downButton();
     int read();
     void startButton();
+    void upButton();
     void update();
   private:
     int _default;

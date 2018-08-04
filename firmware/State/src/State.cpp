@@ -35,6 +35,12 @@ void State::begin()
   _buttonPressed = BUTTON_NONE;
 }
 
+void State::downButton()
+{
+  _buttonPressed = BUTTON_DOWN;
+  printf("  Button pressed: Down.\n");
+}
+
 int State::read()
 {
   return _current;
@@ -46,10 +52,19 @@ void State::startButton()
   printf("  Button pressed: Start.\n");
 }
 
+void State::upButton()
+{
+  _buttonPressed = BUTTON_UP;
+  printf("  Button pressed: Up.\n");
+}
+
 void State::update()
 {
   switch (_current) {
     case STATE_IDLE:
+      if (_buttonPressed == BUTTON_DOWN) {
+        _current = STATE_NOT_SUPPORTED;
+      }
       if (_buttonPressed == BUTTON_START) {
         _current = STATE_Pro1;
       }

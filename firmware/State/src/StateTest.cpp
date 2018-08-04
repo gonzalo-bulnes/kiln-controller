@@ -40,6 +40,19 @@ const char * test_STATE_IDLE_transitions() {
     state.startButton();
     state.update();
     mu_assert("ERROR: expected STATE_IDLE to transition to STATE_Pro1 after Start button was pressed", state.read() == STATE_Pro1);
+
+    State state2;
+    state2.begin();
+    state2.upButton();
+    state2.update();
+    mu_assert("ERROR: expected STATE_IDLE not to transition after Up button was pressed", state2.read() == STATE_IDLE);
+
+    State state3;
+    state3.begin();
+    state3.downButton();
+    state3.update();
+    mu_assert("ERROR: expected STATE_IDLE to transition to STATE_NOT_SUPPORTED after Down button was pressed", state3.read() == STATE_NOT_SUPPORTED);
+
     return 0;
 }
 
