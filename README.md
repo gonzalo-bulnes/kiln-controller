@@ -1,8 +1,15 @@
-Kiln controller prototype
-=========================
+Kiln Controller
+===============
 
-An architecture and usability prototype for a kiln controller.
+An architecture and usability prototype for a glass kiln controller.
 
+Overview
+--------
+
+  [firmware]: ./firmware
+
+- **[Firmware][firmware]**: there are some programmable electronics involved; this is the corresponding code.
+- **Enhanced user interface**: there might be some day more to this project, but nothing concrete yet.
 
 License
 -------
