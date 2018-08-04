@@ -15,7 +15,11 @@ CAUTION: *Kilns are dangerous*, any may involve *high voltage, currents and temp
 1. Open KilnController.ino in your preferred Arduino IDE
 2. Verify it
 
-== Step 2: Load the code
+== Step 2: Assemble the circuit
+
+Assemble the circuit following the diagram layout (kiln-controller_bb.png) attached to the sketch, or (at your preference) the schematics (kiln-controller_schem.png).
+
+== Step 3: Load the code
 
 Upload the code contained in this sketch on to your board
 
@@ -28,8 +32,9 @@ Upload the code contained in this sketch on to your board
   ├── Display.h => headers of Display library
   ├── LICENSE.txt
   ├── ReadMe.adoc
-  ├── layout.png => missing!
-  └── schematics.png => missing!
+  ├── kiln-controller.fzz => Fritzing project
+  ├── kiln-controller_bb.png => layout diagram
+  └── kiln-controller_schem.png => schematics
 ....
 
 
@@ -61,7 +66,7 @@ Add the bill of the materials you need for this project.
 |===
 | ID | Part name               | Part number | Quantity
 | A1 | Arduino UNO             | UNO         | 1
-| B1 | 14-segment LED Backpack | HT16K33     | 1
+| D1 | 14-segment LED Backpack | HT16K33     | 1
 |===
 
 
