@@ -40,6 +40,12 @@ int State::read()
   return _current;
 }
 
+void State::startButton()
+{
+  _buttonPressed = BUTTON_START;
+  printf("  Button pressed: Start.\n");
+}
+
 void State::update()
 {
   switch (_current) {
@@ -50,10 +56,4 @@ void State::update()
       break;
   }
   printf("  State updated.\n");
-}
-
-void State::startButton()
-{
-  _buttonPressed = BUTTON_START;
-  printf("  Button pressed: Start.\n");
 }

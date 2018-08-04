@@ -31,8 +31,8 @@ class State
     State();
     void begin();
     int read();
-    void update();
     void startButton();
+    void update();
   private:
     int _default;
     int _current;
