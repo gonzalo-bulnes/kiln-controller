@@ -56,7 +56,7 @@ void Display::writeIdle()
 void Display::writeProgram1()
 {
   _display.writeDigitAscii(0, 'P');
-  _display.writeDigitAscii(1, 'r');
+  _display.writeDigitRaw(1, 0x00d0);
   _display.writeDigitAscii(2, 'O');
   _display.writeDigitAscii(3, '1');
   _display.writeDisplay();
@@ -66,7 +66,7 @@ void Display::writeProgram1()
 void Display::writeProgram2()
 {
   _display.writeDigitAscii(0, 'P');
-  _display.writeDigitAscii(1, 'r');
+  _display.writeDigitRaw(1, 0x00d0);
   _display.writeDigitAscii(2, 'O');
   _display.writeDigitAscii(3, '2');
   _display.writeDisplay();
@@ -76,7 +76,7 @@ void Display::writeProgram2()
 void Display::writeProgram3()
 {
   _display.writeDigitAscii(0, 'P');
-  _display.writeDigitAscii(1, 'r');
+  _display.writeDigitRaw(1, 0x00d0);
   _display.writeDigitAscii(2, 'O');
   _display.writeDigitRaw(3, 0x00cf);
   _display.writeDisplay();
@@ -86,7 +86,7 @@ void Display::writeProgram3()
 void Display::writeProgram4()
 {
   _display.writeDigitAscii(0, 'P');
-  _display.writeDigitAscii(1, 'r');
+  _display.writeDigitRaw(1, 0x00d0);
   _display.writeDigitAscii(2, 'O');
   _display.writeDigitAscii(3, '4');
   _display.writeDisplay();
@@ -95,7 +95,7 @@ void Display::writeProgram4()
 // writeRamp1 writes rA 1 to a 4 character alphanumeric display.
 void Display::writeRamp1()
 {
-  _display.writeDigitAscii(0, 'r');
+  _display.writeDigitRaw(0, 0x00d0);
   _display.writeDigitAscii(1, 'A');
   _display.writeDigitRaw(2, 0x0000);
   _display.writeDigitAscii(3, '1');
@@ -105,7 +105,7 @@ void Display::writeRamp1()
 // writeRamp2 writes rA 2 to a 4 character alphanumeric display.
 void Display::writeRamp2()
 {
-  _display.writeDigitAscii(0, 'r');
+  _display.writeDigitRaw(0, 0x00d0);
   _display.writeDigitAscii(1, 'A');
   _display.writeDigitRaw(2, 0x0000);
   _display.writeDigitAscii(3, '2');
@@ -115,7 +115,7 @@ void Display::writeRamp2()
 // writeRamp3 writes rA 3 to a 4 character alphanumeric display.
 void Display::writeRamp3()
 {
-  _display.writeDigitAscii(0, 'r');
+  _display.writeDigitRaw(0, 0x00d0);
   _display.writeDigitAscii(1, 'A');
   _display.writeDigitRaw(2, 0x0000);
   _display.writeDigitRaw(3, 0x00cf);
@@ -125,7 +125,7 @@ void Display::writeRamp3()
 // writeRamp4 writes rA 4 to a 4 character alphanumeric display.
 void Display::writeRamp4()
 {
-  _display.writeDigitAscii(0, 'r');
+  _display.writeDigitRaw(0, 0x00d0);
   _display.writeDigitAscii(1, 'A');
   _display.writeDigitRaw(2, 0x0000);
   _display.writeDigitAscii(3, '4');
@@ -135,7 +135,7 @@ void Display::writeRamp4()
 // writeRamp5 writes rA 5 to a 4 character alphanumeric display.
 void Display::writeRamp5()
 {
-  _display.writeDigitAscii(0, 'r');
+  _display.writeDigitRaw(0, 0x00d0);
   _display.writeDigitAscii(1, 'A');
   _display.writeDigitRaw(2, 0x0000);
   _display.writeDigitRaw(3, 0x00ed);
@@ -145,7 +145,7 @@ void Display::writeRamp5()
 // writeRamp6 writes rA 6 to a 4 character alphanumeric display.
 void Display::writeRamp6()
 {
-  _display.writeDigitAscii(0, 'r');
+  _display.writeDigitRaw(0, 0x00d0);
   _display.writeDigitAscii(1, 'A');
   _display.writeDigitRaw(2, 0x0000);
   _display.writeDigitAscii(3, '6');
@@ -155,7 +155,7 @@ void Display::writeRamp6()
 // writeRamp7 writes rA 7 to a 4 character alphanumeric display.
 void Display::writeRamp7()
 {
-  _display.writeDigitAscii(0, 'r');
+  _display.writeDigitRaw(0, 0x00d0);
   _display.writeDigitAscii(1, 'A');
   _display.writeDigitRaw(2, 0x0000);
   _display.writeDigitAscii(3, '7');
@@ -165,7 +165,7 @@ void Display::writeRamp7()
 // writeRamp8 writes rA 8 to a 4 character alphanumeric display.
 void Display::writeRamp8()
 {
-  _display.writeDigitAscii(0, 'r');
+  _display.writeDigitRaw(0, 0x00d0);
   _display.writeDigitAscii(1, 'A');
   _display.writeDigitRaw(2, 0x0000);
   _display.writeDigitAscii(3, '8');
