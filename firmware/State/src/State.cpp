@@ -28,10 +28,6 @@ State::State()
   _default = STATE_IDLE;
 }
 
-int State::getState(int program, int segment, int step) {
-  return PROGRAMS[program-1] + SEGMENTS[segment -1] + STEPS[step -1];
-}
-
 void State::begin()
 {
   printf("State initialized.\n");
