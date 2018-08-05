@@ -43,7 +43,7 @@ class State
     bool _isProgramming();
     void writeSetting(int setting, unsigned int number); // always to next state
   private:
-    unsigned int _config[3][2];
+    unsigned int _config[LAST_SETTING+1][2];
     unsigned int _defaultState;
     unsigned int _currentState; // read it to make decisions on this cycle
     unsigned int _nextState; // modify it when gathering inputs
