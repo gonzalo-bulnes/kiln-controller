@@ -47,6 +47,24 @@ void State::writeProgramNumber(unsigned int number) {
   _currentState |= number << _programOffset; // write
 }
 
+unsigned int State::readSegmentNumber() {
+  return (_currentState & (_maxValueForBits(_segmentBits) << _segmentOffset)) >> _segmentOffset;
+}
+
+void State::writeSegmentNumber(unsigned int number) {
+  _currentState &= ~(_maxValueForBits(_segmentBits) << _segmentOffset); // clear
+  _currentState |= number << _segmentOffset; // write
+}
+
+unsigned int State::readStepNumber() {
+  return (_currentState & (_maxValueForBits(_stepBits) << _stepOffset)) >> _stepOffset;
+}
+
+void State::writeStepNumber(unsigned int number) {
+  _currentState &= ~(_maxValueForBits(_stepBits) << _stepOffset); // clear
+  _currentState |= number << _stepOffset; // write
+}
+
 unsigned int State::read()
 {
   return _currentState;

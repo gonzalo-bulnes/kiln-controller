@@ -44,9 +44,33 @@ const char * test_read_write_program() {
   return 0;
 }
 
+const char * test_read_write_segment() {
+  State state;
+  state.begin();
+  state.update();
+  for (unsigned int n = 1; n <= 8; n++) {
+    state.writeSegmentNumber(n);
+    mu_assert("ERROR: segment number should not be modified when writing and reading", state.readSegmentNumber() == n);
+  }
+  return 0;
+}
+
+const char * test_read_write_step() {
+  State state;
+  state.begin();
+  state.update();
+  for (unsigned int n = 1; n <= 6; n++) {
+    state.writeStepNumber(n);
+    mu_assert("ERROR: step number should not be modified when writing and reading", state.readStepNumber() == n);
+  }
+  return 0;
+}
+
 const char * all_tests() {
   mu_run_test(test_initial_state);
   mu_run_test(test_read_write_program);
+  mu_run_test(test_read_write_segment);
+  mu_run_test(test_read_write_step);
   return 0;
 }
 

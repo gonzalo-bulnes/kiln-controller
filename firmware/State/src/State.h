@@ -20,9 +20,17 @@
 #ifndef State_h
 #define State_h
 
+// Each program segment is composed of 6 steps.
+const char _stepBits = 3;
+const char _stepOffset = 0;
+
+// Each program can have up to 8 segments, numbered 1-8..
+const char _segmentBits = 4;
+const char _segmentOffset = _stepOffset + _stepBits;
+
 // Four programs can be stored, numerded 1-4.
 const char _programBits = 3;
-const char _programOffset = 8;
+const char _programOffset = _segmentOffset + _segmentBits;
 
 class State
 {
@@ -31,8 +39,12 @@ class State
     void begin();
     unsigned int read();
     unsigned int readProgramNumber();
+    unsigned int readSegmentNumber();
+    unsigned int readStepNumber();
     void update();
     void writeProgramNumber(unsigned int number);
+    void writeSegmentNumber(unsigned int number);
+    void writeStepNumber(unsigned int number);
   private:
     unsigned int _defaultState;
     unsigned int _currentState;
