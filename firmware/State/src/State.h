@@ -28,11 +28,12 @@ const int IDLE = 3;
 const int START_BUTTON = 4; // whether or not the start button is pressed
 const int UP_BUTTON = 5; // whether or not the up button is pressed
 const int DOWN_BUTTON = 6; // whether or not the down button is pressed
+const int TIMEOUT = 7;
 
 // Details, ignore this.
 const int BITS = 0;
 const int OFFSET = 1;
-const int LAST_SETTING = DOWN_BUTTON;
+const int LAST_SETTING = TIMEOUT;
 
 class State
 {
@@ -43,6 +44,7 @@ class State
     bool _isIdle();
     bool _isPressed(int button);
     bool _isProgramming();
+    bool _isTimedOut();
     unsigned int read();
     unsigned int readSetting(int setting);
     void _setStateDangerously(unsigned int state);

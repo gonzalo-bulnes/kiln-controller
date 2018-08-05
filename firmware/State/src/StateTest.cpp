@@ -131,6 +131,20 @@ const char * test_is_programming() {
   return 0;
 }
 
+const char * test_is_timed_out() {
+  State state;
+  state.begin();
+  state.update();
+  state.writeSetting(TIMEOUT, 1);
+  state.update();
+  mu_assert("ERROR: expected TIMEOUT 1 to be expired", state._isTimedOut() == true);
+
+  state.writeSetting(TIMEOUT, 0);
+  state.update();
+  mu_assert("ERROR: expected TIMEOUT 0 NOT to be expired", state._isTimedOut() == false);
+  return 0;
+}
+
 const char * test_read_write_down_button_setting() {
   State state;
   state.begin();
@@ -203,6 +217,18 @@ const char * test_read_write_step_setting() {
   return 0;
 }
 
+const char * test_read_write_timeout_setting() {
+  State state;
+  state.begin();
+  state.update();
+  for (unsigned int n = 0; n <= 1; n++) {
+    state.writeSetting(TIMEOUT, n);
+    state.update();
+    mu_assert("ERROR: timeout status should not be modified when writing and reading", state.readSetting(TIMEOUT) == n);
+  }
+  return 0;
+}
+
 const char * test_read_write_up_button_setting() {
   State state;
   state.begin();
@@ -230,12 +256,14 @@ const char * all_tests() {
   mu_run_test(test_is_idle);
   mu_run_test(test_is_pressed);
   mu_run_test(test_is_programming);
+  mu_run_test(test_is_timed_out);
   mu_run_test(test_read_write_down_button_setting);
   mu_run_test(test_read_write_idle_setting);
   mu_run_test(test_read_write_program_setting);
   mu_run_test(test_read_write_segment_setting);
   mu_run_test(test_read_write_start_button_setting);
   mu_run_test(test_read_write_step_setting);
+  mu_run_test(test_read_write_timeout_setting);
   mu_run_test(test_read_write_up_button_setting);
   return 0;
 }

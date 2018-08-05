@@ -54,6 +54,9 @@ State::State()
   _config[UP_BUTTON][OFFSET] = _config[UP_BUTTON-1][OFFSET] + _config[UP_BUTTON-1][BITS];
   _config[DOWN_BUTTON][BITS] = 1;
   _config[DOWN_BUTTON][OFFSET] = _config[DOWN_BUTTON-1][OFFSET] + _config[DOWN_BUTTON-1][BITS];
+  // An input timeout allows to cancel programming operations.
+  _config[TIMEOUT][BITS] = 1;
+  _config[TIMEOUT][OFFSET] = _config[TIMEOUT-1][OFFSET] + _config[TIMEOUT-1][BITS];
 }
 
 void State::begin()
@@ -83,6 +86,11 @@ bool State::_isPressed(int button) {
 bool State::_isProgramming() {
   unsigned int program = readSetting(PROGRAM);
   return (program >=1 && program <= 4);
+}
+
+// _isTimedOut returns whether the input timeout has epired
+bool State::_isTimedOut() {
+  return (readSetting(TIMEOUT) == 1);
 }
 
 // read returns the current state of the kiln
