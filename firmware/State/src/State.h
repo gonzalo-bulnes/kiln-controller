@@ -51,11 +51,11 @@ class State
     void update();
     void writeSetting(int setting, unsigned int number); // always to next state
   private:
-    unsigned int _config[LAST_SETTING+1][2];
     unsigned int _currentState;
     unsigned int _defaultState;
     unsigned int _nextState;
     unsigned int _maxValueForBits(unsigned int numBits);
+    unsigned int _stateSettings[LAST_SETTING+1][2];
 };
 
 #endif

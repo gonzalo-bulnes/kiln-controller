@@ -36,27 +36,27 @@ State::State()
   _defaultState = 0x0400;
 
   // Each program segment is composed of 6 steps.
-  _config[STEP][BITS] = 3;
-  _config[STEP][OFFSET] = 0;
+  _stateSettings[STEP][BITS] = 3;
+  _stateSettings[STEP][OFFSET] = 0;
   // Each program can have up to 8 segments, numbered 1-8..
-  _config[SEGMENT][BITS] = 4;
-  _config[SEGMENT][OFFSET] = _config[SEGMENT-1][OFFSET] + _config[SEGMENT-1][BITS];
+  _stateSettings[SEGMENT][BITS] = 4;
+  _stateSettings[SEGMENT][OFFSET] = _stateSettings[SEGMENT-1][OFFSET] + _stateSettings[SEGMENT-1][BITS];
   // Four programs can be stored, numerded 1-4.
-  _config[PROGRAM][BITS] = 3;
-  _config[PROGRAM][OFFSET] = _config[PROGRAM-1][OFFSET] + _config[PROGRAM-1][BITS];
+  _stateSettings[PROGRAM][BITS] = 3;
+  _stateSettings[PROGRAM][OFFSET] = _stateSettings[PROGRAM-1][OFFSET] + _stateSettings[PROGRAM-1][BITS];
   // The kiln can be idle, or not.
-  _config[IDLE][BITS] = 1;
-  _config[IDLE][OFFSET] = _config[IDLE-1][OFFSET] + _config[IDLE-1][BITS];
+  _stateSettings[IDLE][BITS] = 1;
+  _stateSettings[IDLE][OFFSET] = _stateSettings[IDLE-1][OFFSET] + _stateSettings[IDLE-1][BITS];
   // The kiln keypad has currently three buttons: start, up and down.
-  _config[START_BUTTON][BITS] = 1;
-  _config[START_BUTTON][OFFSET] = _config[START_BUTTON-1][OFFSET] + _config[START_BUTTON-1][BITS];
-  _config[UP_BUTTON][BITS] = 1;
-  _config[UP_BUTTON][OFFSET] = _config[UP_BUTTON-1][OFFSET] + _config[UP_BUTTON-1][BITS];
-  _config[DOWN_BUTTON][BITS] = 1;
-  _config[DOWN_BUTTON][OFFSET] = _config[DOWN_BUTTON-1][OFFSET] + _config[DOWN_BUTTON-1][BITS];
+  _stateSettings[START_BUTTON][BITS] = 1;
+  _stateSettings[START_BUTTON][OFFSET] = _stateSettings[START_BUTTON-1][OFFSET] + _stateSettings[START_BUTTON-1][BITS];
+  _stateSettings[UP_BUTTON][BITS] = 1;
+  _stateSettings[UP_BUTTON][OFFSET] = _stateSettings[UP_BUTTON-1][OFFSET] + _stateSettings[UP_BUTTON-1][BITS];
+  _stateSettings[DOWN_BUTTON][BITS] = 1;
+  _stateSettings[DOWN_BUTTON][OFFSET] = _stateSettings[DOWN_BUTTON-1][OFFSET] + _stateSettings[DOWN_BUTTON-1][BITS];
   // An input timeout allows to cancel programming operations.
-  _config[TIMEOUT][BITS] = 1;
-  _config[TIMEOUT][OFFSET] = _config[TIMEOUT-1][OFFSET] + _config[TIMEOUT-1][BITS];
+  _stateSettings[TIMEOUT][BITS] = 1;
+  _stateSettings[TIMEOUT][OFFSET] = _stateSettings[TIMEOUT-1][OFFSET] + _stateSettings[TIMEOUT-1][BITS];
 }
 
 void State::begin()
@@ -69,7 +69,7 @@ void State::begin()
 
 // _clearSetting writes a zero value for the given setting in next state
 void State::_clearSetting(int setting) {
-  _nextState &= ~(_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET]); // clear
+  _nextState &= ~(_maxValueForBits(_stateSettings[setting][BITS]) << _stateSettings[setting][OFFSET]); // clear
 }
 
 // _isIdle returns whether the kiln is currently idle
@@ -101,7 +101,7 @@ unsigned int State::read()
 
 // readSetting returns the value of a given setting from the current state
 unsigned int State::readSetting(int setting) {
-  return (_currentState & (_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET])) >> _config[setting][OFFSET];
+  return (_currentState & (_maxValueForBits(_stateSettings[setting][BITS]) << _stateSettings[setting][OFFSET])) >> _stateSettings[setting][OFFSET];
 }
 
 // _maxValueForBits returns the maximum value achievable in a given number of bits
@@ -128,5 +128,5 @@ void State::update()
 // writeSetting writes a value to a given setting in the state
 void State::writeSetting(int setting, unsigned int value) {
   _clearSetting(setting);
-  _nextState |= value << _config[setting][OFFSET]; // write
+  _nextState |= value << _stateSettings[setting][OFFSET]; // write
 }
