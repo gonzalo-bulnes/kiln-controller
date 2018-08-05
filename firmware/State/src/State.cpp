@@ -58,7 +58,7 @@ unsigned int State::_maxValueForBits(unsigned int numBits) {
 }
 
 unsigned int State::readSetting(int setting) {
-  return (_nextState & (_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET])) >> _config[setting][OFFSET];
+  return (_currentState & (_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET])) >> _config[setting][OFFSET];
 }
 
 void State::writeSetting(int setting, unsigned int value) {

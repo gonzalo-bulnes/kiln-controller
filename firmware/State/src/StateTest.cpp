@@ -37,25 +37,36 @@ const char * test_dangerously_set_state() {
 const char * test_is_programming() {
   State state;
   state.begin();
-  state.update();state.writeSetting(PROGRAM, 4);
+  state.update();
+  state.writeSetting(PROGRAM, 4);
+  state.update();
   mu_assert("ERROR: expected PROGRAM 4 to be programming", state._isProgramming() == true);
   state.writeSetting(PROGRAM, 3);
+  state.update();
   mu_assert("ERROR: expected PROGRAM 2 to be programming", state._isProgramming() == true);
   state.writeSetting(PROGRAM, 2);
+  state.update();
   mu_assert("ERROR: expected PROGRAM 3 to be programming", state._isProgramming() == true);
   state.writeSetting(PROGRAM, 1);
+  state.update();
   mu_assert("ERROR: expected PROGRAM 1 to be programming", state._isProgramming() == true);
   state.writeSetting(PROGRAM, 0);
+  state.update();
   mu_assert("ERROR: expected unsupported PROGRAM 0 NOT to be programming", state._isProgramming() == false);
   state.writeSetting(PROGRAM, 5);
+  state.update();
   mu_assert("ERROR: expected unsupported PROGRAM 5 NOT to be programming", state._isProgramming() == false);
   state.writeSetting(PROGRAM, 8);
+  state.update();
   mu_assert("ERROR: expected unsupported PROGRAM 8 NOT to be programming", state._isProgramming() == false);
   state.writeSetting(PROGRAM, 9);
+  state.update();
   mu_assert("ERROR: expected irregular PROGRAM 9 to be programming", state._isProgramming() == true);
   state.writeSetting(PROGRAM, 12);
+  state.update();
   mu_assert("ERROR: expected irregular PROGRAM 12 to be programming", state._isProgramming() == true);
   state.writeSetting(PROGRAM, 13);
+  state.update();
   mu_assert("ERROR: expected unsupported PROGRAM 13 NOT to be programming", state._isProgramming() == false);
   return 0;
 }
@@ -74,6 +85,7 @@ const char * test_read_write_program() {
   state.update();
   for (unsigned int n = 1; n <= 4; n++) {
     state.writeSetting(PROGRAM, n);
+    state.update();
     mu_assert("ERROR: program number should not be modified when writing and reading", state.readSetting(PROGRAM) == n);
   }
   return 0;
@@ -85,6 +97,7 @@ const char * test_read_write_segment() {
   state.update();
   for (unsigned int n = 1; n <= 8; n++) {
     state.writeSetting(SEGMENT, n);
+    state.update();
     mu_assert("ERROR: segment number should not be modified when writing and reading", state.readSetting(SEGMENT) == n);
   }
   return 0;
@@ -96,6 +109,7 @@ const char * test_read_write_step() {
   state.update();
   for (unsigned int n = 1; n <= 6; n++) {
     state.writeSetting(STEP, n);
+    state.update();
     mu_assert("ERROR: step number should not be modified when writing and reading", state.readSetting(STEP) == n);
   }
   return 0;
