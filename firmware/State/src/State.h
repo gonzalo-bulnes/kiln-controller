@@ -20,10 +20,12 @@
 #ifndef State_h
 #define State_h
 
+// Settings
 const int STEP = 0;
 const int SEGMENT = 1;
 const int PROGRAM = 2;
 
+// Details, ignore this.
 const int BITS = 0;
 const int OFFSET = 1;
 
@@ -33,13 +35,9 @@ class State
     State();
     void begin();
     unsigned int read();
-    unsigned int readProgramNumber();
-    unsigned int readSegmentNumber();
-    unsigned int readStepNumber();
+    unsigned int readSetting(int setting);
     void update();
-    void writeProgramNumber(unsigned int number);
-    void writeSegmentNumber(unsigned int number);
-    void writeStepNumber(unsigned int number);
+    void writeSetting(int setting, unsigned int number);
   private:
     unsigned int _config[3][2];
     unsigned int _defaultState;
