@@ -19,7 +19,6 @@
 */
 
 #include <stdio.h>
-#include <stdlib.h>
 
 #include "minunit.h"
 #include "State.cpp"
@@ -27,37 +26,39 @@
 int tests_run = 0;
 
 const char * test_initial_state() {
-    State state;
-    state.begin();
-    state.update();
-    mu_assert("ERROR: expected initial state to be STATE_IDLE", state.read() == STATE_IDLE);
-    return 0;
+  State state;
+  state.begin();
+  state.update();
+  mu_assert("ERROR: expected initial state to be zero", state.read() == 0x0000);
+  return 0;
 }
 
-const char * test_STATE_IDLE_transitions() {
-    State state;
-    state.begin();
-    state.startButton();
-    state.update();
-    mu_assert("ERROR: expected STATE_IDLE to transition to STATE_Pro1 after Start button was pressed", state.read() == STATE_Pro1);
-    return 0;
+const char * test_read_write_program() {
+  State state;
+  state.begin();
+  state.update();
+  for (unsigned int n = 1; n <= 4; n++) {
+    state.writeProgramNumber(n);
+    mu_assert("ERROR: program number should not be modified when writing and reading", state.readProgramNumber() == n);
+  }
+  return 0;
 }
 
 const char * all_tests() {
-    mu_run_test(test_initial_state);
-    mu_run_test(test_STATE_IDLE_transitions);
-    return 0;
+  mu_run_test(test_initial_state);
+  mu_run_test(test_read_write_program);
+  return 0;
 }
 
 int main(int argc, char **argv) {
-    const char *result = all_tests();
-    if (result != 0) {
-        printf("%s\n", result);
-    }
-    else {
-        printf("ALL TESTS PASSED\n");
-    }
-    printf("Tests run: %d\n", tests_run);
+  const char *result = all_tests();
+  if (result != 0) {
+      printf("%s\n", result);
+  }
+  else {
+      printf("ALL TESTS PASSED\n");
+  }
+  printf("Tests run: %d\n", tests_run);
 
-    return result != 0;
+  return result != 0;
 }

@@ -20,23 +20,24 @@
 #ifndef State_h
 #define State_h
 
-const int BUTTON_NONE = 0;
-const int BUTTON_START = 1;
-const int STATE_IDLE = 1;
-const int STATE_Pro1 = 2;
+// Four programs can be stored, numerded 1-4.
+const char _programBits = 3;
+const char _programOffset = 8;
 
 class State
 {
   public:
     State();
     void begin();
-    int read();
-    void startButton();
+    unsigned int read();
+    unsigned int readProgramNumber();
     void update();
+    void writeProgramNumber(unsigned int number);
   private:
-    int _default;
-    int _current;
-    int _buttonPressed;
+    unsigned int _defaultState;
+    unsigned int _currentState;
+    unsigned int _nextState;
+    unsigned int _maxValueForBits(unsigned int numBits);
 };
 
 #endif

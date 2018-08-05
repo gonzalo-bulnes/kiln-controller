@@ -18,42 +18,41 @@
   along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "State.h"
 
 State::State()
 {
-  _default = STATE_IDLE;
+  _defaultState = 0x000;
 }
 
 void State::begin()
 {
-  printf("State initialized.\n");
-  _current = _default;
-  _buttonPressed = BUTTON_NONE;
+  _currentState = _defaultState;
 }
 
-int State::read()
-{
-  return _current;
+unsigned int State::_maxValueForBits(unsigned int numBits) {
+  unsigned int max = 0;
+  for (unsigned int i = 0; i < numBits; i++) {
+    max |= 1 << i;
+  }
+  return max;
 }
 
-void State::startButton()
+unsigned int State::readProgramNumber() {
+  return (_currentState & (_maxValueForBits(_programBits) << _programOffset)) >> _programOffset;
+}
+
+void State::writeProgramNumber(unsigned int number) {
+  _currentState &= ~(_maxValueForBits(_programBits) << _programOffset); // clear
+  _currentState |= number << _programOffset; // write
+}
+
+unsigned int State::read()
 {
-  _buttonPressed = BUTTON_START;
-  printf("  Button pressed: Start.\n");
+  return _currentState;
 }
 
 void State::update()
 {
-  switch (_current) {
-    case STATE_IDLE:
-      if (_buttonPressed == BUTTON_START) {
-        _current = STATE_Pro1;
-      }
-      break;
-  }
-  printf("  State updated.\n");
+  _currentState = _nextState;
 }
