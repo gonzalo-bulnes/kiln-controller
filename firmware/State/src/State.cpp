@@ -23,6 +23,15 @@
 State::State()
 {
   _defaultState = 0x000;
+  // Each program segment is composed of 6 steps.
+  _config[STEP][BITS] = 3;
+  _config[STEP][OFFSET] = 0;
+  // Each program can have up to 8 segments, numbered 1-8..
+  _config[SEGMENT][BITS] = 4;
+  _config[SEGMENT][OFFSET] = _config[SEGMENT - 1][OFFSET] + _config[SEGMENT][BITS];
+  // Four programs can be stored, numerded 1-4.
+  _config[PROGRAM][BITS] = 3;
+  _config[PROGRAM][OFFSET] = _config[PROGRAM -1][OFFSET] + _config[PROGRAM][BITS];
 }
 
 void State::begin()
@@ -39,30 +48,30 @@ unsigned int State::_maxValueForBits(unsigned int numBits) {
 }
 
 unsigned int State::readProgramNumber() {
-  return (_currentState & (_maxValueForBits(_programBits) << _programOffset)) >> _programOffset;
+  return (_currentState & (_maxValueForBits(_config[PROGRAM][BITS]) << _config[PROGRAM][OFFSET])) >> _config[PROGRAM][OFFSET];
 }
 
 void State::writeProgramNumber(unsigned int number) {
-  _currentState &= ~(_maxValueForBits(_programBits) << _programOffset); // clear
-  _currentState |= number << _programOffset; // write
+  _currentState &= ~(_maxValueForBits(_config[PROGRAM][BITS]) << _config[PROGRAM][OFFSET]); // clear
+  _currentState |= number << _config[PROGRAM][OFFSET]; // write
 }
 
 unsigned int State::readSegmentNumber() {
-  return (_currentState & (_maxValueForBits(_segmentBits) << _segmentOffset)) >> _segmentOffset;
+  return (_currentState & (_maxValueForBits(_config[SEGMENT][BITS]) << _config[SEGMENT][OFFSET])) >> _config[SEGMENT][OFFSET];
 }
 
 void State::writeSegmentNumber(unsigned int number) {
-  _currentState &= ~(_maxValueForBits(_segmentBits) << _segmentOffset); // clear
-  _currentState |= number << _segmentOffset; // write
+  _currentState &= ~(_maxValueForBits(_config[SEGMENT][BITS]) << _config[SEGMENT][OFFSET]); // clear
+  _currentState |= number << _config[SEGMENT][OFFSET]; // write
 }
 
 unsigned int State::readStepNumber() {
-  return (_currentState & (_maxValueForBits(_stepBits) << _stepOffset)) >> _stepOffset;
+  return (_currentState & (_maxValueForBits(_config[STEP][BITS]) << _config[STEP][OFFSET])) >> _config[STEP][OFFSET];
 }
 
 void State::writeStepNumber(unsigned int number) {
-  _currentState &= ~(_maxValueForBits(_stepBits) << _stepOffset); // clear
-  _currentState |= number << _stepOffset; // write
+  _currentState &= ~(_maxValueForBits(_config[STEP][BITS]) << _config[STEP][OFFSET]); // clear
+  _currentState |= number << _config[STEP][OFFSET]; // write
 }
 
 unsigned int State::read()
