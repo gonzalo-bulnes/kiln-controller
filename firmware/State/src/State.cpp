@@ -28,10 +28,10 @@ State::State()
   _config[STEP][OFFSET] = 0;
   // Each program can have up to 8 segments, numbered 1-8..
   _config[SEGMENT][BITS] = 4;
-  _config[SEGMENT][OFFSET] = _config[SEGMENT - 1][OFFSET] + _config[SEGMENT][BITS];
+  _config[SEGMENT][OFFSET] = _config[SEGMENT - 1][OFFSET] + _config[SEGMENT -1][BITS];
   // Four programs can be stored, numerded 1-4.
   _config[PROGRAM][BITS] = 3;
-  _config[PROGRAM][OFFSET] = _config[PROGRAM -1][OFFSET] + _config[PROGRAM][BITS];
+  _config[PROGRAM][OFFSET] = _config[PROGRAM -1][OFFSET] + _config[PROGRAM -1][BITS];
 }
 
 void State::begin()
