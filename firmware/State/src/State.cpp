@@ -52,8 +52,12 @@ unsigned int State::readSetting(int setting) {
 }
 
 void State::writeSetting(int setting, unsigned int value) {
-  _currentState &= ~(_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET]); // clear
+  clearSetting(setting);
   _currentState |= value << _config[setting][OFFSET]; // write
+}
+
+void State::clearSetting(int setting) {
+  _currentState &= ~(_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET]); // clear
 }
 
 unsigned int State::read()

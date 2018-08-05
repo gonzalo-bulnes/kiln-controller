@@ -34,6 +34,7 @@ class State
   public:
     State();
     void begin();
+    void clearSetting(int setting);
     unsigned int read();
     unsigned int readSetting(int setting);
     void update();

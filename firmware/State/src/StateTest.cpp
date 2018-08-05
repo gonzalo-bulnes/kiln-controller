@@ -23,8 +23,6 @@
 #include "minunit.h"
 #include "State.cpp"
 
-extern int config[3][2];
-
 int tests_run = 0;
 
 const char * test_initial_state() {
