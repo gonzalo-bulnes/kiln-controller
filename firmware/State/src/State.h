@@ -28,22 +28,25 @@ const int PROGRAM = 2;
 // Details, ignore this.
 const int BITS = 0;
 const int OFFSET = 1;
+const int LAST_SETTING = PROGRAM;
 
 class State
 {
   public:
     State();
     void begin();
-    void clearSetting(int setting);
-    unsigned int read();
-    unsigned int readSetting(int setting);
-    void update();
-    void writeSetting(int setting, unsigned int number);
+    void dangerouslySetState(unsigned int state); // always to next state
+    void clearSetting(int setting); // always from next state
+    unsigned int read(); // read the entire current state
+    unsigned int readSetting(int setting); // always from current state
+    void update(); // promote next state to current state
+    bool _isProgramming();
+    void writeSetting(int setting, unsigned int number); // always to next state
   private:
     unsigned int _config[3][2];
     unsigned int _defaultState;
-    unsigned int _currentState;
-    unsigned int _nextState;
+    unsigned int _currentState; // read it to make decisions on this cycle
+    unsigned int _nextState; // modify it when gathering inputs
     unsigned int _maxValueForBits(unsigned int numBits);
 };
 

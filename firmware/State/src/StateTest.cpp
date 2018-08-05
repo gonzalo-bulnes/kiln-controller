@@ -25,6 +25,41 @@
 
 int tests_run = 0;
 
+const char * test_dangerously_set_state() {
+  State state;
+  state.begin();
+  state.dangerouslySetState(0x1234);
+  state.update();
+  mu_assert("ERROR: expected state to be set dangerously but surely", state.read() == 0x1234);
+  return 0;
+}
+
+const char * test_is_programming() {
+  State state;
+  state.begin();
+  state.update();state.writeSetting(PROGRAM, 4);
+  mu_assert("ERROR: expected PROGRAM 4 to be programming", state._isProgramming() == true);
+  state.writeSetting(PROGRAM, 3);
+  mu_assert("ERROR: expected PROGRAM 2 to be programming", state._isProgramming() == true);
+  state.writeSetting(PROGRAM, 2);
+  mu_assert("ERROR: expected PROGRAM 3 to be programming", state._isProgramming() == true);
+  state.writeSetting(PROGRAM, 1);
+  mu_assert("ERROR: expected PROGRAM 1 to be programming", state._isProgramming() == true);
+  state.writeSetting(PROGRAM, 0);
+  mu_assert("ERROR: expected unsupported PROGRAM 0 NOT to be programming", state._isProgramming() == false);
+  state.writeSetting(PROGRAM, 5);
+  mu_assert("ERROR: expected unsupported PROGRAM 5 NOT to be programming", state._isProgramming() == false);
+  state.writeSetting(PROGRAM, 8);
+  mu_assert("ERROR: expected unsupported PROGRAM 8 NOT to be programming", state._isProgramming() == false);
+  state.writeSetting(PROGRAM, 9);
+  mu_assert("ERROR: expected irregular PROGRAM 9 to be programming", state._isProgramming() == true);
+  state.writeSetting(PROGRAM, 12);
+  mu_assert("ERROR: expected irregular PROGRAM 12 to be programming", state._isProgramming() == true);
+  state.writeSetting(PROGRAM, 13);
+  mu_assert("ERROR: expected unsupported PROGRAM 13 NOT to be programming", state._isProgramming() == false);
+  return 0;
+}
+
 const char * test_initial_state() {
   State state;
   state.begin();
@@ -67,7 +102,9 @@ const char * test_read_write_step() {
 }
 
 const char * all_tests() {
+  mu_run_test(test_dangerously_set_state);
   mu_run_test(test_initial_state);
+  mu_run_test(test_is_programming);
   mu_run_test(test_read_write_program);
   mu_run_test(test_read_write_segment);
   mu_run_test(test_read_write_step);

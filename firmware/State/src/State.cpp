@@ -40,6 +40,15 @@ void State::begin()
   _nextState = _currentState;
 }
 
+void State::dangerouslySetState(unsigned int state) {
+  _nextState = state;
+}
+
+bool State::_isProgramming() {
+  unsigned int program = readSetting(PROGRAM);
+  return program >=1 && program <= 4;
+}
+
 unsigned int State::_maxValueForBits(unsigned int numBits) {
   unsigned int max = 0;
   for (unsigned int i = 0; i < numBits; i++) {
