@@ -24,11 +24,12 @@
 const int STEP = 0;
 const int SEGMENT = 1;
 const int PROGRAM = 2;
+const int IDLE = 3;
 
 // Details, ignore this.
 const int BITS = 0;
 const int OFFSET = 1;
-const int LAST_SETTING = PROGRAM;
+const int LAST_SETTING = IDLE;
 
 class State
 {
@@ -40,6 +41,7 @@ class State
     unsigned int read(); // read the entire current state
     unsigned int readSetting(int setting); // always from current state
     void update(); // promote next state to current state
+    bool _isIdle();
     bool _isProgramming();
     void writeSetting(int setting, unsigned int number); // always to next state
   private:

@@ -22,7 +22,10 @@
 
 State::State()
 {
-  _defaultState = 0x000;
+  // | 0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0 |
+  //              |i| progr |  segmt  | step |
+
+  _defaultState = 0x0400;
   // Each program segment is composed of 6 steps.
   _config[STEP][BITS] = 3;
   _config[STEP][OFFSET] = 0;
@@ -32,6 +35,9 @@ State::State()
   // Four programs can be stored, numerded 1-4.
   _config[PROGRAM][BITS] = 3;
   _config[PROGRAM][OFFSET] = _config[PROGRAM -1][OFFSET] + _config[PROGRAM -1][BITS];
+  // The kiln can be idle.
+  _config[IDLE][BITS] = 1;
+  _config[IDLE][OFFSET] = _config[IDLE -1][OFFSET] + _config[IDLE -1][BITS];
 }
 
 void State::begin()
@@ -44,9 +50,14 @@ void State::dangerouslySetState(unsigned int state) {
   _nextState = state;
 }
 
+bool State::_isIdle() {
+  unsigned int idle = readSetting(IDLE);
+  return (idle == 1);
+}
+
 bool State::_isProgramming() {
   unsigned int program = readSetting(PROGRAM);
-  return program >=1 && program <= 4;
+  return (program >=1 && program <= 4);
 }
 
 unsigned int State::_maxValueForBits(unsigned int numBits) {

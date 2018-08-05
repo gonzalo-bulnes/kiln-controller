@@ -34,6 +34,25 @@ const char * test_dangerously_set_state() {
   return 0;
 }
 
+const char * test_is_idle() {
+  State state;
+  state.begin();
+  state.update();
+  state.writeSetting(IDLE, 1);
+  state.update();
+  mu_assert("ERROR: expected IDLE 1 to be idle", state._isIdle() == true);
+  state.writeSetting(IDLE, 0);
+  state.update();
+  mu_assert("ERROR: expected IDLE 0 NOT to be idle", state._isIdle() == false);
+  state.writeSetting(IDLE, 3);
+  state.update();
+  mu_assert("ERROR: expected irregular IDLE 3 to be idle", state._isIdle() == true);
+  state.writeSetting(IDLE, 4);
+  state.update();
+  mu_assert("ERROR: expected irregular IDLE 4 NOT to be idle", state._isIdle() == false);
+  return 0;
+}
+
 const char * test_is_programming() {
   State state;
   state.begin();
@@ -75,7 +94,19 @@ const char * test_initial_state() {
   State state;
   state.begin();
   state.update();
-  mu_assert("ERROR: expected initial state to be zero", state.read() == 0x0000);
+  mu_assert("ERROR: expected initial state to be IDLE", state._isIdle() == true);
+  return 0;
+}
+
+const char * test_read_write_idle() {
+  State state;
+  state.begin();
+  state.update();
+  for (unsigned int n = 0; n <= 1; n++) {
+    state.writeSetting(IDLE, n);
+    state.update();
+    mu_assert("ERROR: idle number should not be modified when writing and reading", state.readSetting(IDLE) == n);
+  }
   return 0;
 }
 
@@ -118,7 +149,9 @@ const char * test_read_write_step() {
 const char * all_tests() {
   mu_run_test(test_dangerously_set_state);
   mu_run_test(test_initial_state);
+  mu_run_test(test_is_idle);
   mu_run_test(test_is_programming);
+  mu_run_test(test_read_write_idle);
   mu_run_test(test_read_write_program);
   mu_run_test(test_read_write_segment);
   mu_run_test(test_read_write_step);
