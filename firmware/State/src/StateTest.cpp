@@ -25,12 +25,11 @@
 
 int tests_run = 0;
 
-const char * test_set_state_dangerously() {
+const char * test_initial_state() {
   State state;
   state.begin();
-  state._setStateDangerously(0x1234);
   state.update();
-  mu_assert("ERROR: expected state to be set dangerously but surely", state.read() == 0x1234);
+  mu_assert("ERROR: expected initial state to be IDLE", state._isIdle() == true);
   return 0;
 }
 
@@ -53,6 +52,36 @@ const char * test_is_idle() {
   state.writeSetting(IDLE, 4);
   state.update();
   mu_assert("ERROR: expected irregular IDLE 4 NOT to be idle", state._isIdle() == false);
+  return 0;
+}
+
+const char * test_is_pressed() {
+  State state;
+  state.begin();
+  state.update();
+  state.writeSetting(START_BUTTON, 1);
+  state.update();
+  mu_assert("ERROR: expected START_BUTTON 1 to be pressed", state._isPressed(START_BUTTON) == true);
+
+  state.writeSetting(START_BUTTON, 0);
+  state.update();
+  mu_assert("ERROR: expected START_BUTTON 0 NOT to be pressed", state._isPressed(START_BUTTON) == false);
+
+  state.writeSetting(UP_BUTTON, 1);
+  state.update();
+  mu_assert("ERROR: expected UP_BUTTON 1 to be pressed", state._isPressed(UP_BUTTON) == true);
+
+  state.writeSetting(UP_BUTTON, 0);
+  state.update();
+  mu_assert("ERROR: expected UP_BUTTON 0 NOT to be pressed", state._isPressed(UP_BUTTON) == false);
+
+  state.writeSetting(DOWN_BUTTON, 1);
+  state.update();
+  mu_assert("ERROR: expected DOWN_BUTTON 1 to be pressed", state._isPressed(DOWN_BUTTON) == true);
+
+  state.writeSetting(DOWN_BUTTON, 0);
+  state.update();
+  mu_assert("ERROR: expected DOWN_BUTTON 0 NOT to be pressed", state._isPressed(DOWN_BUTTON) == false);
   return 0;
 }
 
@@ -102,11 +131,15 @@ const char * test_is_programming() {
   return 0;
 }
 
-const char * test_initial_state() {
+const char * test_read_write_down_button_setting() {
   State state;
   state.begin();
   state.update();
-  mu_assert("ERROR: expected initial state to be IDLE", state._isIdle() == true);
+  for (unsigned int n = 0; n <= 1; n++) {
+    state.writeSetting(DOWN_BUTTON, n);
+    state.update();
+    mu_assert("ERROR: down button status should not be modified when writing and reading", state.readSetting(DOWN_BUTTON) == n);
+  }
   return 0;
 }
 
@@ -146,6 +179,18 @@ const char * test_read_write_segment_setting() {
   return 0;
 }
 
+const char * test_read_write_start_button_setting() {
+  State state;
+  state.begin();
+  state.update();
+  for (unsigned int n = 0; n <= 1; n++) {
+    state.writeSetting(START_BUTTON, n);
+    state.update();
+    mu_assert("ERROR: start button status should not be modified when writing and reading", state.readSetting(START_BUTTON) == n);
+  }
+  return 0;
+}
+
 const char * test_read_write_step_setting() {
   State state;
   state.begin();
@@ -158,15 +203,40 @@ const char * test_read_write_step_setting() {
   return 0;
 }
 
+const char * test_read_write_up_button_setting() {
+  State state;
+  state.begin();
+  state.update();
+  for (unsigned int n = 0; n <= 1; n++) {
+    state.writeSetting(UP_BUTTON, n);
+    state.update();
+    mu_assert("ERROR: up button status should not be modified when writing and reading", state.readSetting(UP_BUTTON) == n);
+  }
+  return 0;
+}
+
+const char * test_set_state_dangerously() {
+  State state;
+  state.begin();
+  state._setStateDangerously(0x1234);
+  state.update();
+  mu_assert("ERROR: expected state to be set dangerously but surely", state.read() == 0x1234);
+  return 0;
+}
+
 const char * all_tests() {
   mu_run_test(test_set_state_dangerously);
   mu_run_test(test_initial_state);
   mu_run_test(test_is_idle);
+  mu_run_test(test_is_pressed);
   mu_run_test(test_is_programming);
+  mu_run_test(test_read_write_down_button_setting);
   mu_run_test(test_read_write_idle_setting);
   mu_run_test(test_read_write_program_setting);
   mu_run_test(test_read_write_segment_setting);
+  mu_run_test(test_read_write_start_button_setting);
   mu_run_test(test_read_write_step_setting);
+  mu_run_test(test_read_write_up_button_setting);
   return 0;
 }
 

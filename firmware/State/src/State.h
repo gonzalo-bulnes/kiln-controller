@@ -25,11 +25,14 @@ const int STEP = 0;
 const int SEGMENT = 1;
 const int PROGRAM = 2;
 const int IDLE = 3;
+const int START_BUTTON = 4; // whether or not the start button is pressed
+const int UP_BUTTON = 5; // whether or not the up button is pressed
+const int DOWN_BUTTON = 6; // whether or not the down button is pressed
 
 // Details, ignore this.
 const int BITS = 0;
 const int OFFSET = 1;
-const int LAST_SETTING = IDLE;
+const int LAST_SETTING = DOWN_BUTTON;
 
 class State
 {
@@ -38,6 +41,7 @@ class State
     void begin();
     void _clearSetting(int setting);
     bool _isIdle();
+    bool _isPressed(int button);
     bool _isProgramming();
     unsigned int read();
     unsigned int readSetting(int setting);

@@ -25,7 +25,13 @@ State::State()
   /*
     Visual representation of settings in state.
     bits     | 0 0 0 0 | 0 1 0 0 | 0 0 0 0 | 0 0 0 0 |
-    settings              |i| progr |  segmt  | step |
+    settings      |d|u | s|i| progr |  segmt  | step |
+
+    abbreviations:
+      [i]dle
+      [s]tart button
+      [u]p button
+      [d]own button
   */
   _defaultState = 0x0400;
 
@@ -41,6 +47,13 @@ State::State()
   // The kiln can be idle, or not.
   _config[IDLE][BITS] = 1;
   _config[IDLE][OFFSET] = _config[IDLE-1][OFFSET] + _config[IDLE-1][BITS];
+  // The kiln keypad has currently three buttons: start, up and down.
+  _config[START_BUTTON][BITS] = 1;
+  _config[START_BUTTON][OFFSET] = _config[START_BUTTON-1][OFFSET] + _config[START_BUTTON-1][BITS];
+  _config[UP_BUTTON][BITS] = 1;
+  _config[UP_BUTTON][OFFSET] = _config[UP_BUTTON-1][OFFSET] + _config[UP_BUTTON-1][BITS];
+  _config[DOWN_BUTTON][BITS] = 1;
+  _config[DOWN_BUTTON][OFFSET] = _config[DOWN_BUTTON-1][OFFSET] + _config[DOWN_BUTTON-1][BITS];
 }
 
 void State::begin()
@@ -58,8 +71,12 @@ void State::_clearSetting(int setting) {
 
 // _isIdle returns whether the kiln is currently idle
 bool State::_isIdle() {
-  unsigned int idle = readSetting(IDLE);
-  return (idle == 1);
+  return (readSetting(IDLE) == 1);
+}
+
+// _isPressed retruns whether a given button is pressed
+bool State::_isPressed(int button) {
+  return(readSetting(button) == 1);
 }
 
 // _isProgramming returns whether the kiln is in one of the "programming" states
