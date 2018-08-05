@@ -22,44 +22,64 @@
 
 State::State()
 {
-  // | 0 0 0 0 | 0 0 0 0 | 0 0 0 0 | 0 0 0 0 |
-  //              |i| progr |  segmt  | step |
-
+  /*
+    Visual representation of settings in state.
+    bits     | 0 0 0 0 | 0 1 0 0 | 0 0 0 0 | 0 0 0 0 |
+    settings              |i| progr |  segmt  | step |
+  */
   _defaultState = 0x0400;
+
   // Each program segment is composed of 6 steps.
   _config[STEP][BITS] = 3;
   _config[STEP][OFFSET] = 0;
   // Each program can have up to 8 segments, numbered 1-8..
   _config[SEGMENT][BITS] = 4;
-  _config[SEGMENT][OFFSET] = _config[SEGMENT - 1][OFFSET] + _config[SEGMENT -1][BITS];
+  _config[SEGMENT][OFFSET] = _config[SEGMENT-1][OFFSET] + _config[SEGMENT-1][BITS];
   // Four programs can be stored, numerded 1-4.
   _config[PROGRAM][BITS] = 3;
-  _config[PROGRAM][OFFSET] = _config[PROGRAM -1][OFFSET] + _config[PROGRAM -1][BITS];
-  // The kiln can be idle.
+  _config[PROGRAM][OFFSET] = _config[PROGRAM-1][OFFSET] + _config[PROGRAM-1][BITS];
+  // The kiln can be idle, or not.
   _config[IDLE][BITS] = 1;
-  _config[IDLE][OFFSET] = _config[IDLE -1][OFFSET] + _config[IDLE -1][BITS];
+  _config[IDLE][OFFSET] = _config[IDLE-1][OFFSET] + _config[IDLE-1][BITS];
 }
 
 void State::begin()
 {
+   // read the current state to make decisions on this cycle
   _currentState = _defaultState;
+   // write to the next state when gathering inputs before the state update
   _nextState = _currentState;
 }
 
-void State::dangerouslySetState(unsigned int state) {
-  _nextState = state;
+// _clearSetting writes a zero value for the given setting in next state
+void State::_clearSetting(int setting) {
+  _nextState &= ~(_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET]); // clear
 }
 
+// _isIdle returns whether the kiln is currently idle
 bool State::_isIdle() {
   unsigned int idle = readSetting(IDLE);
   return (idle == 1);
 }
 
+// _isProgramming returns whether the kiln is in one of the "programming" states
 bool State::_isProgramming() {
   unsigned int program = readSetting(PROGRAM);
   return (program >=1 && program <= 4);
 }
 
+// read returns the current state of the kiln
+unsigned int State::read()
+{
+  return _currentState;
+}
+
+// readSetting returns the value of a given setting from the current state
+unsigned int State::readSetting(int setting) {
+  return (_currentState & (_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET])) >> _config[setting][OFFSET];
+}
+
+// _maxValueForBits returns the maximum value achievable in a given number of bits
 unsigned int State::_maxValueForBits(unsigned int numBits) {
   unsigned int max = 0;
   for (unsigned int i = 0; i < numBits; i++) {
@@ -68,26 +88,20 @@ unsigned int State::_maxValueForBits(unsigned int numBits) {
   return max;
 }
 
-unsigned int State::readSetting(int setting) {
-  return (_currentState & (_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET])) >> _config[setting][OFFSET];
+// _setStateDangerously overwrites the next state (useful for testing)
+void State::_setStateDangerously(unsigned int state) {
+  _nextState = state;
 }
 
-void State::writeSetting(int setting, unsigned int value) {
-  clearSetting(setting);
-  _nextState |= value << _config[setting][OFFSET]; // write
-}
-
-void State::clearSetting(int setting) {
-  _nextState &= ~(_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET]); // clear
-}
-
-unsigned int State::read()
-{
-  return _currentState;
-}
-
+// update makes the next state current (typically after gathering input is done)
 void State::update()
 {
   _currentState = _nextState;
   _nextState = _currentState;
+}
+
+// writeSetting writes a value to a given setting in the state
+void State::writeSetting(int setting, unsigned int value) {
+  _clearSetting(setting);
+  _nextState |= value << _config[setting][OFFSET]; // write
 }

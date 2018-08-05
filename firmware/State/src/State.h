@@ -20,7 +20,7 @@
 #ifndef State_h
 #define State_h
 
-// Settings
+// Settings together compose the state of the kiln.
 const int STEP = 0;
 const int SEGMENT = 1;
 const int PROGRAM = 2;
@@ -36,19 +36,19 @@ class State
   public:
     State();
     void begin();
-    void dangerouslySetState(unsigned int state); // always to next state
-    void clearSetting(int setting); // always from next state
-    unsigned int read(); // read the entire current state
-    unsigned int readSetting(int setting); // always from current state
-    void update(); // promote next state to current state
+    void _clearSetting(int setting);
     bool _isIdle();
     bool _isProgramming();
+    unsigned int read();
+    unsigned int readSetting(int setting);
+    void _setStateDangerously(unsigned int state);
+    void update();
     void writeSetting(int setting, unsigned int number); // always to next state
   private:
     unsigned int _config[LAST_SETTING+1][2];
+    unsigned int _currentState;
     unsigned int _defaultState;
-    unsigned int _currentState; // read it to make decisions on this cycle
-    unsigned int _nextState; // modify it when gathering inputs
+    unsigned int _nextState;
     unsigned int _maxValueForBits(unsigned int numBits);
 };
 
