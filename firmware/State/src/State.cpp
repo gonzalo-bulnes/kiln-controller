@@ -37,6 +37,7 @@ State::State()
 void State::begin()
 {
   _currentState = _defaultState;
+  _nextState = _currentState;
 }
 
 unsigned int State::_maxValueForBits(unsigned int numBits) {
@@ -48,16 +49,16 @@ unsigned int State::_maxValueForBits(unsigned int numBits) {
 }
 
 unsigned int State::readSetting(int setting) {
-  return (_currentState & (_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET])) >> _config[setting][OFFSET];
+  return (_nextState & (_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET])) >> _config[setting][OFFSET];
 }
 
 void State::writeSetting(int setting, unsigned int value) {
   clearSetting(setting);
-  _currentState |= value << _config[setting][OFFSET]; // write
+  _nextState |= value << _config[setting][OFFSET]; // write
 }
 
 void State::clearSetting(int setting) {
-  _currentState &= ~(_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET]); // clear
+  _nextState &= ~(_maxValueForBits(_config[setting][BITS]) << _config[setting][OFFSET]); // clear
 }
 
 unsigned int State::read()
@@ -68,4 +69,5 @@ unsigned int State::read()
 void State::update()
 {
   _currentState = _nextState;
+  _nextState = _currentState;
 }
