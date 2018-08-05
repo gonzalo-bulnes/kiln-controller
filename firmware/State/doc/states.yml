@@ -1,0 +1,39 @@
+idle:
+  start: Pro1
+  up: none
+  down: Ra 1/lastProgramFired # edge case: no progam was ever fired
+Pro1:
+  start: Ra 1/1 # and stores program edited Pro1
+  up: Pro2
+  down: ?
+  1min: idle # and discards program edited Pro1
+Ra 1/1:
+  start: temperature(Ra 1/1)
+  up: nil
+  down: nil
+  1min: idle # and discards program edited Pro1
+temperature(Ra 1/1):
+  start: oC 1/1 # and stores new temperature(Ra 1/1) unless temperature(Ra 1/1) = 0000 then Badp
+  up: temperature(Ra 1/1 + 1) # and listens for continuous press
+  down: temperature(Ra 1/1 - 1) # and listens for continuous press
+  1min: idle # and discards program edited Pro1
+oC 1/1:
+  start: temperature(oC 1/1)
+  up: nil
+  down: nil
+  1min: idle # and discards program edited Pro1
+temperature(oC 1/1):
+  start: Hld1/1 # and stores new temperature(oC 1/1)
+  up: temperature(oC 1/1 + 1) # and listens for continuous press
+  down: temperature(oC 1/1 - 1) # and listens for continuous press
+  1min: idle # and discards program edited Pro1
+Hld1/1:
+  start: time(Hld1/1)
+  up: nil
+  down: nil
+  1min: idle # and discards program edited Pro1
+time(Hld1/1):
+  start: Ra 2/1 # and stores new time(Hld1/1)
+  up: time(Hld1/1 + 1) # and listens for continuous press
+  down: time(Hld1/1 - 1) # and listens for continuous press
+  1min: idle # and discards program edited Pro1
